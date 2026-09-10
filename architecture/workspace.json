@@ -1,0 +1,1610 @@
+{
+  "configuration" : {
+    "scope" : "SoftwareSystem"
+  },
+  "description" : "Reference architecture for governed enterprise multi-agent systems",
+  "documentation" : { },
+  "id" : 1,
+  "lastModifiedDate" : "2026-09-09T14:50:05Z",
+  "model" : {
+    "people" : [ {
+      "description" : "Business or technical user interacting with the platform.",
+      "id" : "1",
+      "name" : "Enterprise User",
+      "properties" : {
+        "structurizr.dsl.identifier" : "user"
+      },
+      "relationships" : [ {
+        "description" : "Uses for governed enterprise assistance",
+        "destinationId" : "7",
+        "id" : "42",
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Uses",
+        "destinationId" : "8",
+        "id" : "49",
+        "sourceId" : "1",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Person"
+    } ],
+    "softwareSystems" : [ {
+      "description" : "Authorized enterprise applications and APIs consuming governed platform capabilities.",
+      "documentation" : { },
+      "id" : "2",
+      "name" : "Enterprise Applications",
+      "properties" : {
+        "structurizr.dsl.identifier" : "enterpriseApplications"
+      },
+      "relationships" : [ {
+        "description" : "Uses governed platform capabilities",
+        "destinationId" : "7",
+        "id" : "43",
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Invokes governed platform capabilities",
+        "destinationId" : "8",
+        "id" : "44",
+        "sourceId" : "2",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Authoritative enterprise identity and access management system for identities, roles, groups and entitlements.",
+      "documentation" : { },
+      "id" : "3",
+      "name" : "Enterprise IAM",
+      "properties" : {
+        "structurizr.dsl.identifier" : "enterpriseIam"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Systems of record providing governed operational enterprise data.",
+      "documentation" : { },
+      "id" : "4",
+      "name" : "Operational Enterprise Systems",
+      "properties" : {
+        "structurizr.dsl.identifier" : "operationalSystems"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Policy-approved external sources used for governed research when trusted enterprise knowledge is insufficient.",
+      "documentation" : { },
+      "id" : "5",
+      "name" : "Approved External Research Sources",
+      "properties" : {
+        "structurizr.dsl.identifier" : "researchSources"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "description" : "Approved external providers supplying eligible model execution capabilities.",
+      "documentation" : { },
+      "id" : "6",
+      "name" : "Approved External Model Providers",
+      "properties" : {
+        "structurizr.dsl.identifier" : "externalModelProviders"
+      },
+      "tags" : "Element,Software System"
+    }, {
+      "containers" : [ {
+        "description" : "Provides governed entry points for users, applications and APIs.",
+        "documentation" : { },
+        "group" : "Experience Plane",
+        "id" : "8",
+        "name" : "Experience Gateway",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.experienceGateway"
+        },
+        "relationships" : [ {
+          "description" : "Submits requests to",
+          "destinationId" : "9",
+          "id" : "50",
+          "sourceId" : "8",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Experience"
+      }, {
+        "description" : "Deterministically coordinates requests, capabilities and task execution.",
+        "documentation" : { },
+        "group" : "Orchestration Plane",
+        "id" : "9",
+        "name" : "Orchestration Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.orchestrationService"
+        },
+        "relationships" : [ {
+          "description" : "Requests policy decision",
+          "destinationId" : "10",
+          "id" : "51",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Requests scoped context",
+          "destinationId" : "11",
+          "id" : "52",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Reads and updates task state",
+          "destinationId" : "12",
+          "id" : "53",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Assigns bounded domain tasks",
+          "destinationId" : "13",
+          "id" : "54",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Assigns analytical tasks",
+          "destinationId" : "14",
+          "id" : "55",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Assigns approved research tasks",
+          "destinationId" : "15",
+          "id" : "56",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Emits orchestration audit events",
+          "destinationId" : "26",
+          "id" : "82",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Emits execution telemetry and traces",
+          "destinationId" : "27",
+          "id" : "91",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Invokes eligible model runtime",
+          "destinationId" : "39",
+          "id" : "94",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Invokes eligible model runtime",
+          "destinationId" : "40",
+          "id" : "95",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Invokes eligible model runtime",
+          "destinationId" : "41",
+          "id" : "96",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Requests execution-context classification",
+          "destinationId" : "28",
+          "id" : "105",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Provides capability and intended processing requirements",
+          "destinationId" : "29",
+          "id" : "106",
+          "sourceId" : "9",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Orchestration"
+      }, {
+        "description" : "Evaluates authorization, execution and governance policies.",
+        "documentation" : { },
+        "group" : "Orchestration Plane",
+        "id" : "10",
+        "name" : "Policy Decision Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.policyService"
+        },
+        "relationships" : [ {
+          "description" : "Requests required human approval",
+          "destinationId" : "33",
+          "id" : "80",
+          "sourceId" : "10",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Provides applicable execution and governance constraints",
+          "destinationId" : "32",
+          "id" : "114",
+          "sourceId" : "10",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Orchestration"
+      }, {
+        "description" : "Builds policy-scoped context for bounded agent execution.",
+        "documentation" : { },
+        "group" : "Orchestration Plane",
+        "id" : "11",
+        "name" : "Context Assembly Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.contextService"
+        },
+        "relationships" : [ {
+          "description" : "Resolves authoritative identity and entitlement context",
+          "destinationId" : "3",
+          "id" : "100",
+          "sourceId" : "11",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Orchestration"
+      }, {
+        "description" : "Persists canonical task and execution state independently of individual agents.",
+        "documentation" : { },
+        "group" : "Orchestration Plane",
+        "id" : "12",
+        "name" : "Task State Store",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.taskState"
+        },
+        "tags" : "Element,Container,State"
+      }, {
+        "description" : "Performs domain-specific reasoning within a bounded Domain Contract.",
+        "documentation" : { },
+        "group" : "Agent & Capability Plane",
+        "id" : "13",
+        "name" : "Domain Support Agent",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.domainAgent"
+        },
+        "relationships" : [ {
+          "description" : "Requests trusted knowledge",
+          "destinationId" : "16",
+          "id" : "57",
+          "sourceId" : "13",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Requests enterprise relationships",
+          "destinationId" : "17",
+          "id" : "58",
+          "sourceId" : "13",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Requests governed actions",
+          "destinationId" : "20",
+          "id" : "76",
+          "sourceId" : "13",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Agent"
+      }, {
+        "description" : "Performs iterative analytical reasoning over governed enterprise data.",
+        "documentation" : { },
+        "group" : "Agent & Capability Plane",
+        "id" : "14",
+        "name" : "Analysis Agent",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.analysisAgent"
+        },
+        "relationships" : [ {
+          "description" : "Requests trusted knowledge",
+          "destinationId" : "16",
+          "id" : "59",
+          "sourceId" : "14",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Requests enterprise relationships",
+          "destinationId" : "17",
+          "id" : "60",
+          "sourceId" : "14",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Requests approved enterprise data",
+          "destinationId" : "18",
+          "id" : "61",
+          "sourceId" : "14",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Requests governed actions",
+          "destinationId" : "20",
+          "id" : "77",
+          "sourceId" : "14",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Produces analyses and evidence",
+          "destinationId" : "19",
+          "id" : "78",
+          "sourceId" : "14",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Agent"
+      }, {
+        "description" : "Acquires external knowledge when trusted enterprise knowledge is insufficient and policy permits research.",
+        "documentation" : { },
+        "group" : "Agent & Capability Plane",
+        "id" : "15",
+        "name" : "Research Agent",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.researchAgent"
+        },
+        "relationships" : [ {
+          "description" : "Produces findings and evidence",
+          "destinationId" : "19",
+          "id" : "62",
+          "sourceId" : "15",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Queries approved external research sources",
+          "destinationId" : "5",
+          "id" : "102",
+          "sourceId" : "15",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Agent"
+      }, {
+        "description" : "Retrieves trusted enterprise knowledge through governed semantic retrieval.",
+        "documentation" : { },
+        "group" : "Agent & Capability Plane",
+        "id" : "16",
+        "name" : "Knowledge Retrieval Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.retrievalService"
+        },
+        "relationships" : [ {
+          "description" : "Searches",
+          "destinationId" : "36",
+          "id" : "63",
+          "sourceId" : "16",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Rehydrates canonical artifacts",
+          "destinationId" : "35",
+          "id" : "64",
+          "sourceId" : "16",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Service"
+      }, {
+        "description" : "Provides governed traversal and queries over enterprise relationships.",
+        "documentation" : { },
+        "group" : "Agent & Capability Plane",
+        "id" : "17",
+        "name" : "Graph Query Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.graphService"
+        },
+        "relationships" : [ {
+          "description" : "Queries",
+          "destinationId" : "37",
+          "id" : "65",
+          "sourceId" : "17",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Service"
+      }, {
+        "description" : "Mediates policy-controlled access to approved operational enterprise data.",
+        "documentation" : { },
+        "group" : "Agent & Capability Plane",
+        "id" : "18",
+        "name" : "Enterprise Data Access Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.dataAccessService"
+        },
+        "relationships" : [ {
+          "description" : "Accesses approved operational enterprise data",
+          "destinationId" : "4",
+          "id" : "101",
+          "sourceId" : "18",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Service"
+      }, {
+        "description" : "Persists generated work products, findings and evidence packages.",
+        "documentation" : { },
+        "group" : "Agent & Capability Plane",
+        "id" : "19",
+        "name" : "Artifact & Evidence Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.artifactEvidenceService"
+        },
+        "relationships" : [ {
+          "description" : "Persists artifacts and evidence",
+          "destinationId" : "38",
+          "id" : "66",
+          "sourceId" : "19",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Provides eligible findings and evidence",
+          "destinationId" : "21",
+          "id" : "67",
+          "sourceId" : "19",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Service"
+      }, {
+        "description" : "Executes approved side-effecting actions against enterprise systems.",
+        "documentation" : { },
+        "group" : "Agent & Capability Plane",
+        "id" : "20",
+        "name" : "Workflow Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.workflowService"
+        },
+        "relationships" : [ {
+          "description" : "Requests execution authorization",
+          "destinationId" : "10",
+          "id" : "79",
+          "sourceId" : "20",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Emits action audit events",
+          "destinationId" : "26",
+          "id" : "83",
+          "sourceId" : "20",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Emits workflow telemetry and metrics",
+          "destinationId" : "27",
+          "id" : "92",
+          "sourceId" : "20",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Executes approved enterprise actions",
+          "destinationId" : "4",
+          "id" : "104",
+          "sourceId" : "20",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Service"
+      }, {
+        "description" : "Transforms eligible findings and evidence into governed knowledge candidates.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "21",
+        "name" : "Knowledge Curation Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.curationService"
+        },
+        "relationships" : [ {
+          "description" : "Creates governed candidates",
+          "destinationId" : "34",
+          "id" : "68",
+          "sourceId" : "21",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Emits curation audit events",
+          "destinationId" : "26",
+          "id" : "84",
+          "sourceId" : "21",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Validates, reviews and promotes approved candidates into canonical enterprise knowledge.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "22",
+        "name" : "Validation & Promotion Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.promotionService"
+        },
+        "relationships" : [ {
+          "description" : "Promotes approved knowledge",
+          "destinationId" : "35",
+          "id" : "70",
+          "sourceId" : "22",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Triggers index maintenance",
+          "destinationId" : "23",
+          "id" : "71",
+          "sourceId" : "22",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Submits approved relationship changes",
+          "destinationId" : "24",
+          "id" : "74",
+          "sourceId" : "22",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Emits promotion audit events",
+          "destinationId" : "26",
+          "id" : "85",
+          "sourceId" : "22",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Maintains the derived semantic retrieval index from approved canonical knowledge.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "23",
+        "name" : "Index Maintenance Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.indexMaintenanceService"
+        },
+        "relationships" : [ {
+          "description" : "Reads approved canonical knowledge",
+          "destinationId" : "35",
+          "id" : "72",
+          "sourceId" : "23",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Maintains derived semantic index",
+          "destinationId" : "36",
+          "id" : "73",
+          "sourceId" : "23",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Emits index maintenance audit events",
+          "destinationId" : "26",
+          "id" : "86",
+          "sourceId" : "23",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Maintains governed canonical relationships in the enterprise knowledge graph.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "24",
+        "name" : "Graph Lifecycle Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.graphLifecycleService"
+        },
+        "relationships" : [ {
+          "description" : "Maintains governed canonical relationships",
+          "destinationId" : "37",
+          "id" : "75",
+          "sourceId" : "24",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Emits graph lifecycle audit events",
+          "destinationId" : "26",
+          "id" : "87",
+          "sourceId" : "24",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Evaluates capability quality, runtime qualification and production behaviour.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "25",
+        "name" : "Evaluation Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.evaluationService"
+        },
+        "relationships" : [ {
+          "description" : "Evaluates and qualifies",
+          "destinationId" : "39",
+          "id" : "97",
+          "sourceId" : "25",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Evaluates and qualifies",
+          "destinationId" : "40",
+          "id" : "98",
+          "sourceId" : "25",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Evaluates and qualifies",
+          "destinationId" : "41",
+          "id" : "99",
+          "sourceId" : "25",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Provides runtime capability qualification",
+          "destinationId" : "32",
+          "id" : "112",
+          "sourceId" : "25",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Records append-only audit events for governed actions and decisions.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "26",
+        "name" : "Audit Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.auditService"
+        },
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Collects operational telemetry, traces and metrics across governed platform execution without treating business payloads as telemetry by default.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "27",
+        "name" : "Observability Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.observabilityService"
+        },
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Classifies execution context, data sensitivity and disclosure constraints for governed model execution.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "28",
+        "name" : "Data Classification Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.dataClassificationService"
+        },
+        "relationships" : [ {
+          "description" : "Provides classified execution context",
+          "destinationId" : "29",
+          "id" : "107",
+          "sourceId" : "28",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Determines required disclosure transformations for the intended capability and processing class.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "29",
+        "name" : "Disclosure Transformation Policy Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.disclosureTransformationPolicyService"
+        },
+        "relationships" : [ {
+          "description" : "Defines required disclosure transformation",
+          "destinationId" : "30",
+          "id" : "108",
+          "sourceId" : "29",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Applies approved redaction, masking, pseudonymization, aggregation or generalization to execution-scoped data.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "30",
+        "name" : "Data Transformation Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.dataTransformationService"
+        },
+        "relationships" : [ {
+          "description" : "Provides transformed execution payload",
+          "destinationId" : "31",
+          "id" : "109",
+          "sourceId" : "30",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Validates transformed payloads and assesses residual disclosure and re-identification risk.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "31",
+        "name" : "Transformation Validation Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.transformationValidationService"
+        },
+        "relationships" : [ {
+          "description" : "Emits transformation validation audit events",
+          "destinationId" : "26",
+          "id" : "89",
+          "sourceId" : "31",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Provides validated transformation result and residual disclosure risk",
+          "destinationId" : "32",
+          "id" : "110",
+          "sourceId" : "31",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Returns validated transformed execution payload",
+          "destinationId" : "9",
+          "id" : "111",
+          "sourceId" : "31",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Determines eligible model runtimes from validated disclosure risk, capability requirements and execution policy.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "32",
+        "name" : "Model Execution Policy Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.modelExecutionPolicyService"
+        },
+        "relationships" : [ {
+          "description" : "Emits runtime eligibility audit events",
+          "destinationId" : "26",
+          "id" : "90",
+          "sourceId" : "32",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Emits runtime policy telemetry and metrics",
+          "destinationId" : "27",
+          "id" : "93",
+          "sourceId" : "32",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Returns eligible runtime set",
+          "destinationId" : "9",
+          "id" : "113",
+          "sourceId" : "32",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Coordinates required human approval for governed side-effecting actions before execution.",
+        "documentation" : { },
+        "group" : "Governance & Control Plane",
+        "id" : "33",
+        "name" : "Approval Service",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.approvalService"
+        },
+        "relationships" : [ {
+          "description" : "Returns approval decision",
+          "destinationId" : "20",
+          "id" : "81",
+          "sourceId" : "33",
+          "tags" : "Relationship"
+        }, {
+          "description" : "Emits approval audit events",
+          "destinationId" : "26",
+          "id" : "88",
+          "sourceId" : "33",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Governance"
+      }, {
+        "description" : "Stores unverified knowledge candidates in a separate trust domain.",
+        "documentation" : { },
+        "group" : "Enterprise Data & Knowledge Plane",
+        "id" : "34",
+        "name" : "Candidate Knowledge Store",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.candidateStore"
+        },
+        "relationships" : [ {
+          "description" : "Submits candidates for validation",
+          "destinationId" : "22",
+          "id" : "69",
+          "sourceId" : "34",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Candidate,Database"
+      }, {
+        "description" : "Stores approved, versioned enterprise knowledge and authoritative metadata.",
+        "documentation" : { },
+        "group" : "Enterprise Data & Knowledge Plane",
+        "id" : "35",
+        "name" : "Canonical Knowledge Store",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.canonicalStore"
+        },
+        "tags" : "Element,Container,Canonical,Database"
+      }, {
+        "description" : "Derived semantic locator referencing canonical knowledge artifacts.",
+        "documentation" : { },
+        "group" : "Enterprise Data & Knowledge Plane",
+        "id" : "36",
+        "name" : "Semantic Retrieval Index",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.semanticIndex"
+        },
+        "tags" : "Element,Container,Derived,Database"
+      }, {
+        "description" : "Stores governed enterprise entities and canonical relationships.",
+        "documentation" : { },
+        "group" : "Enterprise Data & Knowledge Plane",
+        "id" : "37",
+        "name" : "Enterprise Knowledge Graph",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.knowledgeGraph"
+        },
+        "tags" : "Element,Container,Graph,Database"
+      }, {
+        "description" : "Stores generated reports, evidence packages and large knowledge artifacts.",
+        "documentation" : { },
+        "group" : "Enterprise Data & Knowledge Plane",
+        "id" : "38",
+        "name" : "Artifact Store",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.artifactStore"
+        },
+        "tags" : "Element,Container,Artifact,Database"
+      }, {
+        "description" : "Executes approved capabilities on locally operated models.",
+        "documentation" : { },
+        "group" : "Model Runtime Plane",
+        "id" : "39",
+        "name" : "Local Model Runtime",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.localRuntime"
+        },
+        "tags" : "Element,Container,Runtime"
+      }, {
+        "description" : "Executes eligible capabilities in approved private or sovereign infrastructure.",
+        "documentation" : { },
+        "group" : "Model Runtime Plane",
+        "id" : "40",
+        "name" : "Private / Sovereign Runtime",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.privateRuntime"
+        },
+        "tags" : "Element,Container,Runtime"
+      }, {
+        "description" : "Executes eligible capabilities using approved external model providers.",
+        "documentation" : { },
+        "group" : "Model Runtime Plane",
+        "id" : "41",
+        "name" : "Approved External Runtime",
+        "properties" : {
+          "structurizr.dsl.identifier" : "platform.externalRuntime"
+        },
+        "relationships" : [ {
+          "description" : "Invokes approved external model providers",
+          "destinationId" : "6",
+          "id" : "103",
+          "sourceId" : "41",
+          "tags" : "Relationship"
+        } ],
+        "tags" : "Element,Container,Runtime"
+      } ],
+      "description" : "Governed platform for agentic enterprise assistance.",
+      "documentation" : { },
+      "id" : "7",
+      "name" : "Enterprise Multi-Agent Platform",
+      "properties" : {
+        "structurizr.dsl.identifier" : "platform"
+      },
+      "relationships" : [ {
+        "description" : "Authenticates identities and resolves entitlements",
+        "destinationId" : "3",
+        "id" : "45",
+        "sourceId" : "7",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Accesses governed operational data",
+        "destinationId" : "4",
+        "id" : "46",
+        "sourceId" : "7",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Acquires external evidence when policy permits",
+        "destinationId" : "5",
+        "id" : "47",
+        "sourceId" : "7",
+        "tags" : "Relationship"
+      }, {
+        "description" : "Invokes eligible external model capabilities",
+        "destinationId" : "6",
+        "id" : "48",
+        "sourceId" : "7",
+        "tags" : "Relationship"
+      } ],
+      "tags" : "Element,Software System"
+    } ]
+  },
+  "name" : "Enterprise Multi-Agent Architecture",
+  "properties" : {
+    "structurizr.inspection.error" : "111",
+    "structurizr.dsl" : "d29ya3NwYWNlICJFbnRlcnByaXNlIE11bHRpLUFnZW50IEFyY2hpdGVjdHVyZSIgIlJlZmVyZW5jZSBhcmNoaXRlY3R1cmUgZm9yIGdvdmVybmVkIGVudGVycHJpc2UgbXVsdGktYWdlbnQgc3lzdGVtcyIgewoKICAgICFpZGVudGlmaWVycyBoaWVyYXJjaGljYWwKCiAgICBtb2RlbCB7CiAgICAgICAgdXNlciA9IHBlcnNvbiAiRW50ZXJwcmlzZSBVc2VyIiAiQnVzaW5lc3Mgb3IgdGVjaG5pY2FsIHVzZXIgaW50ZXJhY3Rpbmcgd2l0aCB0aGUgcGxhdGZvcm0uIgoKICAgICAgICBlbnRlcnByaXNlQXBwbGljYXRpb25zID0gc29mdHdhcmVTeXN0ZW0gIkVudGVycHJpc2UgQXBwbGljYXRpb25zIiAiQXV0aG9yaXplZCBlbnRlcnByaXNlIGFwcGxpY2F0aW9ucyBhbmQgQVBJcyBjb25zdW1pbmcgZ292ZXJuZWQgcGxhdGZvcm0gY2FwYWJpbGl0aWVzLiIKCiAgICAgICAgZW50ZXJwcmlzZUlhbSA9IHNvZnR3YXJlU3lzdGVtICJFbnRlcnByaXNlIElBTSIgIkF1dGhvcml0YXRpdmUgZW50ZXJwcmlzZSBpZGVudGl0eSBhbmQgYWNjZXNzIG1hbmFnZW1lbnQgc3lzdGVtIGZvciBpZGVudGl0aWVzLCByb2xlcywgZ3JvdXBzIGFuZCBlbnRpdGxlbWVudHMuIgoKICAgICAgICBvcGVyYXRpb25hbFN5c3RlbXMgPSBzb2Z0d2FyZVN5c3RlbSAiT3BlcmF0aW9uYWwgRW50ZXJwcmlzZSBTeXN0ZW1zIiAiU3lzdGVtcyBvZiByZWNvcmQgcHJvdmlkaW5nIGdvdmVybmVkIG9wZXJhdGlvbmFsIGVudGVycHJpc2UgZGF0YS4iCgogICAgICAgIHJlc2VhcmNoU291cmNlcyA9IHNvZnR3YXJlU3lzdGVtICJBcHByb3ZlZCBFeHRlcm5hbCBSZXNlYXJjaCBTb3VyY2VzIiAiUG9saWN5LWFwcHJvdmVkIGV4dGVybmFsIHNvdXJjZXMgdXNlZCBmb3IgZ292ZXJuZWQgcmVzZWFyY2ggd2hlbiB0cnVzdGVkIGVudGVycHJpc2Uga25vd2xlZGdlIGlzIGluc3VmZmljaWVudC4iCgogICAgICAgIGV4dGVybmFsTW9kZWxQcm92aWRlcnMgPSBzb2Z0d2FyZVN5c3RlbSAiQXBwcm92ZWQgRXh0ZXJuYWwgTW9kZWwgUHJvdmlkZXJzIiAiQXBwcm92ZWQgZXh0ZXJuYWwgcHJvdmlkZXJzIHN1cHBseWluZyBlbGlnaWJsZSBtb2RlbCBleGVjdXRpb24gY2FwYWJpbGl0aWVzLiIKCiAgICAgICAgcGxhdGZvcm0gPSBzb2Z0d2FyZVN5c3RlbSAiRW50ZXJwcmlzZSBNdWx0aS1BZ2VudCBQbGF0Zm9ybSIgIkdvdmVybmVkIHBsYXRmb3JtIGZvciBhZ2VudGljIGVudGVycHJpc2UgYXNzaXN0YW5jZS4iIHsKCiAgICAgICAgICAgIGdyb3VwICJFeHBlcmllbmNlIFBsYW5lIiB7CgogICAgICAgICAgICAgICAgZXhwZXJpZW5jZUdhdGV3YXkgPSBjb250YWluZXIgIkV4cGVyaWVuY2UgR2F0ZXdheSIgIlByb3ZpZGVzIGdvdmVybmVkIGVudHJ5IHBvaW50cyBmb3IgdXNlcnMsIGFwcGxpY2F0aW9ucyBhbmQgQVBJcy4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJFeHBlcmllbmNlIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICBncm91cCAiT3JjaGVzdHJhdGlvbiBQbGFuZSIgewoKICAgICAgICAgICAgICAgIG9yY2hlc3RyYXRpb25TZXJ2aWNlID0gY29udGFpbmVyICJPcmNoZXN0cmF0aW9uIFNlcnZpY2UiICJEZXRlcm1pbmlzdGljYWxseSBjb29yZGluYXRlcyByZXF1ZXN0cywgY2FwYWJpbGl0aWVzIGFuZCB0YXNrIGV4ZWN1dGlvbi4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJPcmNoZXN0cmF0aW9uIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIHBvbGljeVNlcnZpY2UgPSBjb250YWluZXIgIlBvbGljeSBEZWNpc2lvbiBTZXJ2aWNlIiAiRXZhbHVhdGVzIGF1dGhvcml6YXRpb24sIGV4ZWN1dGlvbiBhbmQgZ292ZXJuYW5jZSBwb2xpY2llcy4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJPcmNoZXN0cmF0aW9uIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGNvbnRleHRTZXJ2aWNlID0gY29udGFpbmVyICJDb250ZXh0IEFzc2VtYmx5IFNlcnZpY2UiICJCdWlsZHMgcG9saWN5LXNjb3BlZCBjb250ZXh0IGZvciBib3VuZGVkIGFnZW50IGV4ZWN1dGlvbi4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJPcmNoZXN0cmF0aW9uIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIHRhc2tTdGF0ZSA9IGNvbnRhaW5lciAiVGFzayBTdGF0ZSBTdG9yZSIgIlBlcnNpc3RzIGNhbm9uaWNhbCB0YXNrIGFuZCBleGVjdXRpb24gc3RhdGUgaW5kZXBlbmRlbnRseSBvZiBpbmRpdmlkdWFsIGFnZW50cy4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJTdGF0ZSIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQoKICAgICAgICAgICAgZ3JvdXAgIkFnZW50ICYgQ2FwYWJpbGl0eSBQbGFuZSIgewoKICAgICAgICAgICAgICAgIGRvbWFpbkFnZW50ID0gY29udGFpbmVyICJEb21haW4gU3VwcG9ydCBBZ2VudCIgIlBlcmZvcm1zIGRvbWFpbi1zcGVjaWZpYyByZWFzb25pbmcgd2l0aGluIGEgYm91bmRlZCBEb21haW4gQ29udHJhY3QuIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiQWdlbnQiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgYW5hbHlzaXNBZ2VudCA9IGNvbnRhaW5lciAiQW5hbHlzaXMgQWdlbnQiICJQZXJmb3JtcyBpdGVyYXRpdmUgYW5hbHl0aWNhbCByZWFzb25pbmcgb3ZlciBnb3Zlcm5lZCBlbnRlcnByaXNlIGRhdGEuIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiQWdlbnQiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgcmVzZWFyY2hBZ2VudCA9IGNvbnRhaW5lciAiUmVzZWFyY2ggQWdlbnQiICJBY3F1aXJlcyBleHRlcm5hbCBrbm93bGVkZ2Ugd2hlbiB0cnVzdGVkIGVudGVycHJpc2Uga25vd2xlZGdlIGlzIGluc3VmZmljaWVudCBhbmQgcG9saWN5IHBlcm1pdHMgcmVzZWFyY2guIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiQWdlbnQiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgcmV0cmlldmFsU2VydmljZSA9IGNvbnRhaW5lciAiS25vd2xlZGdlIFJldHJpZXZhbCBTZXJ2aWNlIiAiUmV0cmlldmVzIHRydXN0ZWQgZW50ZXJwcmlzZSBrbm93bGVkZ2UgdGhyb3VnaCBnb3Zlcm5lZCBzZW1hbnRpYyByZXRyaWV2YWwuIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiU2VydmljZSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBncmFwaFNlcnZpY2UgPSBjb250YWluZXIgIkdyYXBoIFF1ZXJ5IFNlcnZpY2UiICJQcm92aWRlcyBnb3Zlcm5lZCB0cmF2ZXJzYWwgYW5kIHF1ZXJpZXMgb3ZlciBlbnRlcnByaXNlIHJlbGF0aW9uc2hpcHMuIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiU2VydmljZSIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgZGF0YUFjY2Vzc1NlcnZpY2UgPSBjb250YWluZXIgIkVudGVycHJpc2UgRGF0YSBBY2Nlc3MgU2VydmljZSIgIk1lZGlhdGVzIHBvbGljeS1jb250cm9sbGVkIGFjY2VzcyB0byBhcHByb3ZlZCBvcGVyYXRpb25hbCBlbnRlcnByaXNlIGRhdGEuIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiU2VydmljZSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBhcnRpZmFjdEV2aWRlbmNlU2VydmljZSA9IGNvbnRhaW5lciAiQXJ0aWZhY3QgJiBFdmlkZW5jZSBTZXJ2aWNlIiAiUGVyc2lzdHMgZ2VuZXJhdGVkIHdvcmsgcHJvZHVjdHMsIGZpbmRpbmdzIGFuZCBldmlkZW5jZSBwYWNrYWdlcy4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJTZXJ2aWNlIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIHdvcmtmbG93U2VydmljZSA9IGNvbnRhaW5lciAiV29ya2Zsb3cgU2VydmljZSIgIkV4ZWN1dGVzIGFwcHJvdmVkIHNpZGUtZWZmZWN0aW5nIGFjdGlvbnMgYWdhaW5zdCBlbnRlcnByaXNlIHN5c3RlbXMuIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiU2VydmljZSIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQoKICAgICAgICAgICAgZ3JvdXAgIkdvdmVybmFuY2UgJiBDb250cm9sIFBsYW5lIiB7CgogICAgICAgICAgICAgICAgY3VyYXRpb25TZXJ2aWNlID0gY29udGFpbmVyICJLbm93bGVkZ2UgQ3VyYXRpb24gU2VydmljZSIgIlRyYW5zZm9ybXMgZWxpZ2libGUgZmluZGluZ3MgYW5kIGV2aWRlbmNlIGludG8gZ292ZXJuZWQga25vd2xlZGdlIGNhbmRpZGF0ZXMuIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiR292ZXJuYW5jZSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBwcm9tb3Rpb25TZXJ2aWNlID0gY29udGFpbmVyICJWYWxpZGF0aW9uICYgUHJvbW90aW9uIFNlcnZpY2UiICJWYWxpZGF0ZXMsIHJldmlld3MgYW5kIHByb21vdGVzIGFwcHJvdmVkIGNhbmRpZGF0ZXMgaW50byBjYW5vbmljYWwgZW50ZXJwcmlzZSBrbm93bGVkZ2UuIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiR292ZXJuYW5jZSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBpbmRleE1haW50ZW5hbmNlU2VydmljZSA9IGNvbnRhaW5lciAiSW5kZXggTWFpbnRlbmFuY2UgU2VydmljZSIgIk1haW50YWlucyB0aGUgZGVyaXZlZCBzZW1hbnRpYyByZXRyaWV2YWwgaW5kZXggZnJvbSBhcHByb3ZlZCBjYW5vbmljYWwga25vd2xlZGdlLiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgIkdvdmVybmFuY2UiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgZ3JhcGhMaWZlY3ljbGVTZXJ2aWNlID0gY29udGFpbmVyICJHcmFwaCBMaWZlY3ljbGUgU2VydmljZSIgIk1haW50YWlucyBnb3Zlcm5lZCBjYW5vbmljYWwgcmVsYXRpb25zaGlwcyBpbiB0aGUgZW50ZXJwcmlzZSBrbm93bGVkZ2UgZ3JhcGguIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiR292ZXJuYW5jZSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBldmFsdWF0aW9uU2VydmljZSA9IGNvbnRhaW5lciAiRXZhbHVhdGlvbiBTZXJ2aWNlIiAiRXZhbHVhdGVzIGNhcGFiaWxpdHkgcXVhbGl0eSwgcnVudGltZSBxdWFsaWZpY2F0aW9uIGFuZCBwcm9kdWN0aW9uIGJlaGF2aW91ci4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJHb3Zlcm5hbmNlIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGF1ZGl0U2VydmljZSA9IGNvbnRhaW5lciAiQXVkaXQgU2VydmljZSIgIlJlY29yZHMgYXBwZW5kLW9ubHkgYXVkaXQgZXZlbnRzIGZvciBnb3Zlcm5lZCBhY3Rpb25zIGFuZCBkZWNpc2lvbnMuIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiR292ZXJuYW5jZSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBvYnNlcnZhYmlsaXR5U2VydmljZSA9IGNvbnRhaW5lciAiT2JzZXJ2YWJpbGl0eSBTZXJ2aWNlIiAiQ29sbGVjdHMgb3BlcmF0aW9uYWwgdGVsZW1ldHJ5LCB0cmFjZXMgYW5kIG1ldHJpY3MgYWNyb3NzIGdvdmVybmVkIHBsYXRmb3JtIGV4ZWN1dGlvbiB3aXRob3V0IHRyZWF0aW5nIGJ1c2luZXNzIHBheWxvYWRzIGFzIHRlbGVtZXRyeSBieSBkZWZhdWx0LiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgIkdvdmVybmFuY2UiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgZGF0YUNsYXNzaWZpY2F0aW9uU2VydmljZSA9IGNvbnRhaW5lciAiRGF0YSBDbGFzc2lmaWNhdGlvbiBTZXJ2aWNlIiAiQ2xhc3NpZmllcyBleGVjdXRpb24gY29udGV4dCwgZGF0YSBzZW5zaXRpdml0eSBhbmQgZGlzY2xvc3VyZSBjb25zdHJhaW50cyBmb3IgZ292ZXJuZWQgbW9kZWwgZXhlY3V0aW9uLiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgIkdvdmVybmFuY2UiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgZGlzY2xvc3VyZVRyYW5zZm9ybWF0aW9uUG9saWN5U2VydmljZSA9IGNvbnRhaW5lciAiRGlzY2xvc3VyZSBUcmFuc2Zvcm1hdGlvbiBQb2xpY3kgU2VydmljZSIgIkRldGVybWluZXMgcmVxdWlyZWQgZGlzY2xvc3VyZSB0cmFuc2Zvcm1hdGlvbnMgZm9yIHRoZSBpbnRlbmRlZCBjYXBhYmlsaXR5IGFuZCBwcm9jZXNzaW5nIGNsYXNzLiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgIkdvdmVybmFuY2UiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgZGF0YVRyYW5zZm9ybWF0aW9uU2VydmljZSA9IGNvbnRhaW5lciAiRGF0YSBUcmFuc2Zvcm1hdGlvbiBTZXJ2aWNlIiAiQXBwbGllcyBhcHByb3ZlZCByZWRhY3Rpb24sIG1hc2tpbmcsIHBzZXVkb255bWl6YXRpb24sIGFnZ3JlZ2F0aW9uIG9yIGdlbmVyYWxpemF0aW9uIHRvIGV4ZWN1dGlvbi1zY29wZWQgZGF0YS4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJHb3Zlcm5hbmNlIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIHRyYW5zZm9ybWF0aW9uVmFsaWRhdGlvblNlcnZpY2UgPSBjb250YWluZXIgIlRyYW5zZm9ybWF0aW9uIFZhbGlkYXRpb24gU2VydmljZSIgIlZhbGlkYXRlcyB0cmFuc2Zvcm1lZCBwYXlsb2FkcyBhbmQgYXNzZXNzZXMgcmVzaWR1YWwgZGlzY2xvc3VyZSBhbmQgcmUtaWRlbnRpZmljYXRpb24gcmlzay4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJHb3Zlcm5hbmNlIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIG1vZGVsRXhlY3V0aW9uUG9saWN5U2VydmljZSA9IGNvbnRhaW5lciAiTW9kZWwgRXhlY3V0aW9uIFBvbGljeSBTZXJ2aWNlIiAiRGV0ZXJtaW5lcyBlbGlnaWJsZSBtb2RlbCBydW50aW1lcyBmcm9tIHZhbGlkYXRlZCBkaXNjbG9zdXJlIHJpc2ssIGNhcGFiaWxpdHkgcmVxdWlyZW1lbnRzIGFuZCBleGVjdXRpb24gcG9saWN5LiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgIkdvdmVybmFuY2UiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgYXBwcm92YWxTZXJ2aWNlID0gY29udGFpbmVyICJBcHByb3ZhbCBTZXJ2aWNlIiAiQ29vcmRpbmF0ZXMgcmVxdWlyZWQgaHVtYW4gYXBwcm92YWwgZm9yIGdvdmVybmVkIHNpZGUtZWZmZWN0aW5nIGFjdGlvbnMgYmVmb3JlIGV4ZWN1dGlvbi4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJHb3Zlcm5hbmNlIgogICAgICAgICAgICAgICAgfQogICAgICAgICAgICB9CgogICAgICAgICAgICBncm91cCAiRW50ZXJwcmlzZSBEYXRhICYgS25vd2xlZGdlIFBsYW5lIiB7CgogICAgICAgICAgICAgICAgY2FuZGlkYXRlU3RvcmUgPSBjb250YWluZXIgIkNhbmRpZGF0ZSBLbm93bGVkZ2UgU3RvcmUiICJTdG9yZXMgdW52ZXJpZmllZCBrbm93bGVkZ2UgY2FuZGlkYXRlcyBpbiBhIHNlcGFyYXRlIHRydXN0IGRvbWFpbi4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJDYW5kaWRhdGUiICJEYXRhYmFzZSIKICAgICAgICAgICAgICAgIH0KCiAgICAgICAgICAgICAgICBjYW5vbmljYWxTdG9yZSA9IGNvbnRhaW5lciAiQ2Fub25pY2FsIEtub3dsZWRnZSBTdG9yZSIgIlN0b3JlcyBhcHByb3ZlZCwgdmVyc2lvbmVkIGVudGVycHJpc2Uga25vd2xlZGdlIGFuZCBhdXRob3JpdGF0aXZlIG1ldGFkYXRhLiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgIkNhbm9uaWNhbCIgIkRhdGFiYXNlIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIHNlbWFudGljSW5kZXggPSBjb250YWluZXIgIlNlbWFudGljIFJldHJpZXZhbCBJbmRleCIgIkRlcml2ZWQgc2VtYW50aWMgbG9jYXRvciByZWZlcmVuY2luZyBjYW5vbmljYWwga25vd2xlZGdlIGFydGlmYWN0cy4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJEZXJpdmVkIiAiRGF0YWJhc2UiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAga25vd2xlZGdlR3JhcGggPSBjb250YWluZXIgIkVudGVycHJpc2UgS25vd2xlZGdlIEdyYXBoIiAiU3RvcmVzIGdvdmVybmVkIGVudGVycHJpc2UgZW50aXRpZXMgYW5kIGNhbm9uaWNhbCByZWxhdGlvbnNoaXBzLiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgIkdyYXBoIiAiRGF0YWJhc2UiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgYXJ0aWZhY3RTdG9yZSA9IGNvbnRhaW5lciAiQXJ0aWZhY3QgU3RvcmUiICJTdG9yZXMgZ2VuZXJhdGVkIHJlcG9ydHMsIGV2aWRlbmNlIHBhY2thZ2VzIGFuZCBsYXJnZSBrbm93bGVkZ2UgYXJ0aWZhY3RzLiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgIkFydGlmYWN0IiAiRGF0YWJhc2UiCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGdyb3VwICJNb2RlbCBSdW50aW1lIFBsYW5lIiB7CgogICAgICAgICAgICAgICAgbG9jYWxSdW50aW1lID0gY29udGFpbmVyICJMb2NhbCBNb2RlbCBSdW50aW1lIiAiRXhlY3V0ZXMgYXBwcm92ZWQgY2FwYWJpbGl0aWVzIG9uIGxvY2FsbHkgb3BlcmF0ZWQgbW9kZWxzLiIgewogICAgICAgICAgICAgICAgICAgIHRhZ3MgIlJ1bnRpbWUiCiAgICAgICAgICAgICAgICB9CgogICAgICAgICAgICAgICAgcHJpdmF0ZVJ1bnRpbWUgPSBjb250YWluZXIgIlByaXZhdGUgLyBTb3ZlcmVpZ24gUnVudGltZSIgIkV4ZWN1dGVzIGVsaWdpYmxlIGNhcGFiaWxpdGllcyBpbiBhcHByb3ZlZCBwcml2YXRlIG9yIHNvdmVyZWlnbiBpbmZyYXN0cnVjdHVyZS4iIHsKICAgICAgICAgICAgICAgICAgICB0YWdzICJSdW50aW1lIgogICAgICAgICAgICAgICAgfQoKICAgICAgICAgICAgICAgIGV4dGVybmFsUnVudGltZSA9IGNvbnRhaW5lciAiQXBwcm92ZWQgRXh0ZXJuYWwgUnVudGltZSIgIkV4ZWN1dGVzIGVsaWdpYmxlIGNhcGFiaWxpdGllcyB1c2luZyBhcHByb3ZlZCBleHRlcm5hbCBtb2RlbCBwcm92aWRlcnMuIiB7CiAgICAgICAgICAgICAgICAgICAgdGFncyAiUnVudGltZSIKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgIH0KCiAgICAgICAgdXNlciAtPiBwbGF0Zm9ybSAiVXNlcyBmb3IgZ292ZXJuZWQgZW50ZXJwcmlzZSBhc3Npc3RhbmNlIgoKICAgICAgICBlbnRlcnByaXNlQXBwbGljYXRpb25zIC0+IHBsYXRmb3JtICJVc2VzIGdvdmVybmVkIHBsYXRmb3JtIGNhcGFiaWxpdGllcyIKCiAgICAgICAgZW50ZXJwcmlzZUFwcGxpY2F0aW9ucyAtPiBwbGF0Zm9ybS5leHBlcmllbmNlR2F0ZXdheSAiSW52b2tlcyBnb3Zlcm5lZCBwbGF0Zm9ybSBjYXBhYmlsaXRpZXMiCgogICAgICAgIHBsYXRmb3JtIC0+IGVudGVycHJpc2VJYW0gIkF1dGhlbnRpY2F0ZXMgaWRlbnRpdGllcyBhbmQgcmVzb2x2ZXMgZW50aXRsZW1lbnRzIgoKICAgICAgICBwbGF0Zm9ybSAtPiBvcGVyYXRpb25hbFN5c3RlbXMgIkFjY2Vzc2VzIGdvdmVybmVkIG9wZXJhdGlvbmFsIGRhdGEiCgogICAgICAgIHBsYXRmb3JtIC0+IHJlc2VhcmNoU291cmNlcyAiQWNxdWlyZXMgZXh0ZXJuYWwgZXZpZGVuY2Ugd2hlbiBwb2xpY3kgcGVybWl0cyIKCiAgICAgICAgcGxhdGZvcm0gLT4gZXh0ZXJuYWxNb2RlbFByb3ZpZGVycyAiSW52b2tlcyBlbGlnaWJsZSBleHRlcm5hbCBtb2RlbCBjYXBhYmlsaXRpZXMiCgogICAgICAgIHVzZXIgLT4gcGxhdGZvcm0uZXhwZXJpZW5jZUdhdGV3YXkgIlVzZXMiCgogICAgICAgIHBsYXRmb3JtLmV4cGVyaWVuY2VHYXRld2F5IC0+IHBsYXRmb3JtLm9yY2hlc3RyYXRpb25TZXJ2aWNlICJTdWJtaXRzIHJlcXVlc3RzIHRvIgoKICAgICAgICBwbGF0Zm9ybS5vcmNoZXN0cmF0aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5wb2xpY3lTZXJ2aWNlICJSZXF1ZXN0cyBwb2xpY3kgZGVjaXNpb24iCiAgICAgICAgcGxhdGZvcm0ub3JjaGVzdHJhdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0uY29udGV4dFNlcnZpY2UgIlJlcXVlc3RzIHNjb3BlZCBjb250ZXh0IgogICAgICAgIHBsYXRmb3JtLm9yY2hlc3RyYXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLnRhc2tTdGF0ZSAiUmVhZHMgYW5kIHVwZGF0ZXMgdGFzayBzdGF0ZSIKCiAgICAgICAgcGxhdGZvcm0ub3JjaGVzdHJhdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0uZG9tYWluQWdlbnQgIkFzc2lnbnMgYm91bmRlZCBkb21haW4gdGFza3MiCiAgICAgICAgcGxhdGZvcm0ub3JjaGVzdHJhdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0uYW5hbHlzaXNBZ2VudCAiQXNzaWducyBhbmFseXRpY2FsIHRhc2tzIgogICAgICAgIHBsYXRmb3JtLm9yY2hlc3RyYXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLnJlc2VhcmNoQWdlbnQgIkFzc2lnbnMgYXBwcm92ZWQgcmVzZWFyY2ggdGFza3MiCgogICAgICAgIHBsYXRmb3JtLmRvbWFpbkFnZW50IC0+IHBsYXRmb3JtLnJldHJpZXZhbFNlcnZpY2UgIlJlcXVlc3RzIHRydXN0ZWQga25vd2xlZGdlIgogICAgICAgIHBsYXRmb3JtLmRvbWFpbkFnZW50IC0+IHBsYXRmb3JtLmdyYXBoU2VydmljZSAiUmVxdWVzdHMgZW50ZXJwcmlzZSByZWxhdGlvbnNoaXBzIgoKICAgICAgICBwbGF0Zm9ybS5hbmFseXNpc0FnZW50IC0+IHBsYXRmb3JtLnJldHJpZXZhbFNlcnZpY2UgIlJlcXVlc3RzIHRydXN0ZWQga25vd2xlZGdlIgogICAgICAgIHBsYXRmb3JtLmFuYWx5c2lzQWdlbnQgLT4gcGxhdGZvcm0uZ3JhcGhTZXJ2aWNlICJSZXF1ZXN0cyBlbnRlcnByaXNlIHJlbGF0aW9uc2hpcHMiCiAgICAgICAgcGxhdGZvcm0uYW5hbHlzaXNBZ2VudCAtPiBwbGF0Zm9ybS5kYXRhQWNjZXNzU2VydmljZSAiUmVxdWVzdHMgYXBwcm92ZWQgZW50ZXJwcmlzZSBkYXRhIgoKICAgICAgICBwbGF0Zm9ybS5yZXNlYXJjaEFnZW50IC0+IHBsYXRmb3JtLmFydGlmYWN0RXZpZGVuY2VTZXJ2aWNlICJQcm9kdWNlcyBmaW5kaW5ncyBhbmQgZXZpZGVuY2UiCgogICAgICAgIHBsYXRmb3JtLnJldHJpZXZhbFNlcnZpY2UgLT4gcGxhdGZvcm0uc2VtYW50aWNJbmRleCAiU2VhcmNoZXMiCiAgICAgICAgcGxhdGZvcm0ucmV0cmlldmFsU2VydmljZSAtPiBwbGF0Zm9ybS5jYW5vbmljYWxTdG9yZSAiUmVoeWRyYXRlcyBjYW5vbmljYWwgYXJ0aWZhY3RzIgogICAgICAgIHBsYXRmb3JtLmdyYXBoU2VydmljZSAtPiBwbGF0Zm9ybS5rbm93bGVkZ2VHcmFwaCAiUXVlcmllcyIKICAgICAgICBwbGF0Zm9ybS5hcnRpZmFjdEV2aWRlbmNlU2VydmljZSAtPiBwbGF0Zm9ybS5hcnRpZmFjdFN0b3JlICJQZXJzaXN0cyBhcnRpZmFjdHMgYW5kIGV2aWRlbmNlIgoKICAgICAgICBwbGF0Zm9ybS5hcnRpZmFjdEV2aWRlbmNlU2VydmljZSAtPiBwbGF0Zm9ybS5jdXJhdGlvblNlcnZpY2UgIlByb3ZpZGVzIGVsaWdpYmxlIGZpbmRpbmdzIGFuZCBldmlkZW5jZSIKICAgICAgICBwbGF0Zm9ybS5jdXJhdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0uY2FuZGlkYXRlU3RvcmUgIkNyZWF0ZXMgZ292ZXJuZWQgY2FuZGlkYXRlcyIKICAgICAgICBwbGF0Zm9ybS5jYW5kaWRhdGVTdG9yZSAtPiBwbGF0Zm9ybS5wcm9tb3Rpb25TZXJ2aWNlICJTdWJtaXRzIGNhbmRpZGF0ZXMgZm9yIHZhbGlkYXRpb24iCiAgICAgICAgcGxhdGZvcm0ucHJvbW90aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5jYW5vbmljYWxTdG9yZSAiUHJvbW90ZXMgYXBwcm92ZWQga25vd2xlZGdlIgoKICAgICAgICBwbGF0Zm9ybS5wcm9tb3Rpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLmluZGV4TWFpbnRlbmFuY2VTZXJ2aWNlICJUcmlnZ2VycyBpbmRleCBtYWludGVuYW5jZSIKICAgICAgICBwbGF0Zm9ybS5pbmRleE1haW50ZW5hbmNlU2VydmljZSAtPiBwbGF0Zm9ybS5jYW5vbmljYWxTdG9yZSAiUmVhZHMgYXBwcm92ZWQgY2Fub25pY2FsIGtub3dsZWRnZSIKICAgICAgICBwbGF0Zm9ybS5pbmRleE1haW50ZW5hbmNlU2VydmljZSAtPiBwbGF0Zm9ybS5zZW1hbnRpY0luZGV4ICJNYWludGFpbnMgZGVyaXZlZCBzZW1hbnRpYyBpbmRleCIKCiAgICAgICAgcGxhdGZvcm0ucHJvbW90aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5ncmFwaExpZmVjeWNsZVNlcnZpY2UgIlN1Ym1pdHMgYXBwcm92ZWQgcmVsYXRpb25zaGlwIGNoYW5nZXMiCiAgICAgICAgcGxhdGZvcm0uZ3JhcGhMaWZlY3ljbGVTZXJ2aWNlIC0+IHBsYXRmb3JtLmtub3dsZWRnZUdyYXBoICJNYWludGFpbnMgZ292ZXJuZWQgY2Fub25pY2FsIHJlbGF0aW9uc2hpcHMiCgogICAgICAgIHBsYXRmb3JtLmRvbWFpbkFnZW50IC0+IHBsYXRmb3JtLndvcmtmbG93U2VydmljZSAiUmVxdWVzdHMgZ292ZXJuZWQgYWN0aW9ucyIKICAgICAgICBwbGF0Zm9ybS5hbmFseXNpc0FnZW50IC0+IHBsYXRmb3JtLndvcmtmbG93U2VydmljZSAiUmVxdWVzdHMgZ292ZXJuZWQgYWN0aW9ucyIKICAgICAgICBwbGF0Zm9ybS5hbmFseXNpc0FnZW50IC0+IHBsYXRmb3JtLmFydGlmYWN0RXZpZGVuY2VTZXJ2aWNlICJQcm9kdWNlcyBhbmFseXNlcyBhbmQgZXZpZGVuY2UiCgogICAgICAgIHBsYXRmb3JtLndvcmtmbG93U2VydmljZSAtPiBwbGF0Zm9ybS5wb2xpY3lTZXJ2aWNlICJSZXF1ZXN0cyBleGVjdXRpb24gYXV0aG9yaXphdGlvbiIKICAgICAgICBwbGF0Zm9ybS5wb2xpY3lTZXJ2aWNlIC0+IHBsYXRmb3JtLmFwcHJvdmFsU2VydmljZSAiUmVxdWVzdHMgcmVxdWlyZWQgaHVtYW4gYXBwcm92YWwiCiAgICAgICAgcGxhdGZvcm0uYXBwcm92YWxTZXJ2aWNlIC0+IHBsYXRmb3JtLndvcmtmbG93U2VydmljZSAiUmV0dXJucyBhcHByb3ZhbCBkZWNpc2lvbiIKCiAgICAgICAgcGxhdGZvcm0ub3JjaGVzdHJhdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0uYXVkaXRTZXJ2aWNlICJFbWl0cyBvcmNoZXN0cmF0aW9uIGF1ZGl0IGV2ZW50cyIKICAgICAgICBwbGF0Zm9ybS53b3JrZmxvd1NlcnZpY2UgLT4gcGxhdGZvcm0uYXVkaXRTZXJ2aWNlICJFbWl0cyBhY3Rpb24gYXVkaXQgZXZlbnRzIgogICAgICAgIHBsYXRmb3JtLmN1cmF0aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5hdWRpdFNlcnZpY2UgIkVtaXRzIGN1cmF0aW9uIGF1ZGl0IGV2ZW50cyIKICAgICAgICBwbGF0Zm9ybS5wcm9tb3Rpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLmF1ZGl0U2VydmljZSAiRW1pdHMgcHJvbW90aW9uIGF1ZGl0IGV2ZW50cyIKICAgICAgICBwbGF0Zm9ybS5pbmRleE1haW50ZW5hbmNlU2VydmljZSAtPiBwbGF0Zm9ybS5hdWRpdFNlcnZpY2UgIkVtaXRzIGluZGV4IG1haW50ZW5hbmNlIGF1ZGl0IGV2ZW50cyIKICAgICAgICBwbGF0Zm9ybS5ncmFwaExpZmVjeWNsZVNlcnZpY2UgLT4gcGxhdGZvcm0uYXVkaXRTZXJ2aWNlICJFbWl0cyBncmFwaCBsaWZlY3ljbGUgYXVkaXQgZXZlbnRzIgogICAgICAgIHBsYXRmb3JtLmFwcHJvdmFsU2VydmljZSAtPiBwbGF0Zm9ybS5hdWRpdFNlcnZpY2UgIkVtaXRzIGFwcHJvdmFsIGF1ZGl0IGV2ZW50cyIKICAgICAgICBwbGF0Zm9ybS50cmFuc2Zvcm1hdGlvblZhbGlkYXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLmF1ZGl0U2VydmljZSAiRW1pdHMgdHJhbnNmb3JtYXRpb24gdmFsaWRhdGlvbiBhdWRpdCBldmVudHMiCiAgICAgICAgcGxhdGZvcm0ubW9kZWxFeGVjdXRpb25Qb2xpY3lTZXJ2aWNlIC0+IHBsYXRmb3JtLmF1ZGl0U2VydmljZSAiRW1pdHMgcnVudGltZSBlbGlnaWJpbGl0eSBhdWRpdCBldmVudHMiCgogICAgICAgIHBsYXRmb3JtLm9yY2hlc3RyYXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLm9ic2VydmFiaWxpdHlTZXJ2aWNlICJFbWl0cyBleGVjdXRpb24gdGVsZW1ldHJ5IGFuZCB0cmFjZXMiCiAgICAgICAgcGxhdGZvcm0ud29ya2Zsb3dTZXJ2aWNlIC0+IHBsYXRmb3JtLm9ic2VydmFiaWxpdHlTZXJ2aWNlICJFbWl0cyB3b3JrZmxvdyB0ZWxlbWV0cnkgYW5kIG1ldHJpY3MiCiAgICAgICAgcGxhdGZvcm0ubW9kZWxFeGVjdXRpb25Qb2xpY3lTZXJ2aWNlIC0+IHBsYXRmb3JtLm9ic2VydmFiaWxpdHlTZXJ2aWNlICJFbWl0cyBydW50aW1lIHBvbGljeSB0ZWxlbWV0cnkgYW5kIG1ldHJpY3MiCgogICAgICAgIHBsYXRmb3JtLm9yY2hlc3RyYXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLmxvY2FsUnVudGltZSAiSW52b2tlcyBlbGlnaWJsZSBtb2RlbCBydW50aW1lIgogICAgICAgIHBsYXRmb3JtLm9yY2hlc3RyYXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLnByaXZhdGVSdW50aW1lICJJbnZva2VzIGVsaWdpYmxlIG1vZGVsIHJ1bnRpbWUiCiAgICAgICAgcGxhdGZvcm0ub3JjaGVzdHJhdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0uZXh0ZXJuYWxSdW50aW1lICJJbnZva2VzIGVsaWdpYmxlIG1vZGVsIHJ1bnRpbWUiCgogICAgICAgIHBsYXRmb3JtLmV2YWx1YXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLmxvY2FsUnVudGltZSAiRXZhbHVhdGVzIGFuZCBxdWFsaWZpZXMiCiAgICAgICAgcGxhdGZvcm0uZXZhbHVhdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0ucHJpdmF0ZVJ1bnRpbWUgIkV2YWx1YXRlcyBhbmQgcXVhbGlmaWVzIgogICAgICAgIHBsYXRmb3JtLmV2YWx1YXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLmV4dGVybmFsUnVudGltZSAiRXZhbHVhdGVzIGFuZCBxdWFsaWZpZXMiCgogICAgICAgIHBsYXRmb3JtLmNvbnRleHRTZXJ2aWNlIC0+IGVudGVycHJpc2VJYW0gIlJlc29sdmVzIGF1dGhvcml0YXRpdmUgaWRlbnRpdHkgYW5kIGVudGl0bGVtZW50IGNvbnRleHQiCiAgICAgICAgcGxhdGZvcm0uZGF0YUFjY2Vzc1NlcnZpY2UgLT4gb3BlcmF0aW9uYWxTeXN0ZW1zICJBY2Nlc3NlcyBhcHByb3ZlZCBvcGVyYXRpb25hbCBlbnRlcnByaXNlIGRhdGEiCiAgICAgICAgcGxhdGZvcm0ucmVzZWFyY2hBZ2VudCAtPiByZXNlYXJjaFNvdXJjZXMgIlF1ZXJpZXMgYXBwcm92ZWQgZXh0ZXJuYWwgcmVzZWFyY2ggc291cmNlcyIKICAgICAgICBwbGF0Zm9ybS5leHRlcm5hbFJ1bnRpbWUgLT4gZXh0ZXJuYWxNb2RlbFByb3ZpZGVycyAiSW52b2tlcyBhcHByb3ZlZCBleHRlcm5hbCBtb2RlbCBwcm92aWRlcnMiCiAgICAgICAgcGxhdGZvcm0ud29ya2Zsb3dTZXJ2aWNlIC0+IG9wZXJhdGlvbmFsU3lzdGVtcyAiRXhlY3V0ZXMgYXBwcm92ZWQgZW50ZXJwcmlzZSBhY3Rpb25zIgoKICAgICAgICBwbGF0Zm9ybS5vcmNoZXN0cmF0aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5kYXRhQ2xhc3NpZmljYXRpb25TZXJ2aWNlICJSZXF1ZXN0cyBleGVjdXRpb24tY29udGV4dCBjbGFzc2lmaWNhdGlvbiIKCiAgICAgICAgcGxhdGZvcm0ub3JjaGVzdHJhdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0uZGlzY2xvc3VyZVRyYW5zZm9ybWF0aW9uUG9saWN5U2VydmljZSAiUHJvdmlkZXMgY2FwYWJpbGl0eSBhbmQgaW50ZW5kZWQgcHJvY2Vzc2luZyByZXF1aXJlbWVudHMiCiAgICAgICAgcGxhdGZvcm0uZGF0YUNsYXNzaWZpY2F0aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5kaXNjbG9zdXJlVHJhbnNmb3JtYXRpb25Qb2xpY3lTZXJ2aWNlICJQcm92aWRlcyBjbGFzc2lmaWVkIGV4ZWN1dGlvbiBjb250ZXh0IgoKICAgICAgICBwbGF0Zm9ybS5kaXNjbG9zdXJlVHJhbnNmb3JtYXRpb25Qb2xpY3lTZXJ2aWNlIC0+IHBsYXRmb3JtLmRhdGFUcmFuc2Zvcm1hdGlvblNlcnZpY2UgIkRlZmluZXMgcmVxdWlyZWQgZGlzY2xvc3VyZSB0cmFuc2Zvcm1hdGlvbiIKICAgICAgICBwbGF0Zm9ybS5kYXRhVHJhbnNmb3JtYXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLnRyYW5zZm9ybWF0aW9uVmFsaWRhdGlvblNlcnZpY2UgIlByb3ZpZGVzIHRyYW5zZm9ybWVkIGV4ZWN1dGlvbiBwYXlsb2FkIgoKICAgICAgICBwbGF0Zm9ybS50cmFuc2Zvcm1hdGlvblZhbGlkYXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLm1vZGVsRXhlY3V0aW9uUG9saWN5U2VydmljZSAiUHJvdmlkZXMgdmFsaWRhdGVkIHRyYW5zZm9ybWF0aW9uIHJlc3VsdCBhbmQgcmVzaWR1YWwgZGlzY2xvc3VyZSByaXNrIgogICAgICAgIHBsYXRmb3JtLnRyYW5zZm9ybWF0aW9uVmFsaWRhdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0ub3JjaGVzdHJhdGlvblNlcnZpY2UgIlJldHVybnMgdmFsaWRhdGVkIHRyYW5zZm9ybWVkIGV4ZWN1dGlvbiBwYXlsb2FkIgogICAgICAgIHBsYXRmb3JtLmV2YWx1YXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLm1vZGVsRXhlY3V0aW9uUG9saWN5U2VydmljZSAiUHJvdmlkZXMgcnVudGltZSBjYXBhYmlsaXR5IHF1YWxpZmljYXRpb24iCgogICAgICAgIHBsYXRmb3JtLm1vZGVsRXhlY3V0aW9uUG9saWN5U2VydmljZSAtPiBwbGF0Zm9ybS5vcmNoZXN0cmF0aW9uU2VydmljZSAiUmV0dXJucyBlbGlnaWJsZSBydW50aW1lIHNldCIKICAgICAgICBwbGF0Zm9ybS5wb2xpY3lTZXJ2aWNlIC0+IHBsYXRmb3JtLm1vZGVsRXhlY3V0aW9uUG9saWN5U2VydmljZSAiUHJvdmlkZXMgYXBwbGljYWJsZSBleGVjdXRpb24gYW5kIGdvdmVybmFuY2UgY29uc3RyYWludHMiCiAgICB9CgogICAgdmlld3MgewoKICAgICAgICBzeXN0ZW1Db250ZXh0IHBsYXRmb3JtICJTeXN0ZW1Db250ZXh0IiB7CiAgICAgICAgICAgIGluY2x1ZGUgdXNlcgogICAgICAgICAgICBpbmNsdWRlIGVudGVycHJpc2VBcHBsaWNhdGlvbnMKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybQogICAgICAgICAgICBpbmNsdWRlIGVudGVycHJpc2VJYW0KICAgICAgICAgICAgaW5jbHVkZSBvcGVyYXRpb25hbFN5c3RlbXMKICAgICAgICAgICAgaW5jbHVkZSByZXNlYXJjaFNvdXJjZXMKICAgICAgICAgICAgaW5jbHVkZSBleHRlcm5hbE1vZGVsUHJvdmlkZXJzCgogICAgICAgICAgICBhdXRvTGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgcGxhdGZvcm0gIkFyY2hpdGVjdHVyZU92ZXJ2aWV3IiB7CiAgICAgICAgICAgIGluY2x1ZGUgdXNlcgoKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5leHBlcmllbmNlR2F0ZXdheQoKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5vcmNoZXN0cmF0aW9uU2VydmljZQoKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5kb21haW5BZ2VudAogICAgICAgICAgICBpbmNsdWRlIHBsYXRmb3JtLmFuYWx5c2lzQWdlbnQKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5yZXNlYXJjaEFnZW50CgogICAgICAgICAgICBpbmNsdWRlIHBsYXRmb3JtLnJldHJpZXZhbFNlcnZpY2UKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5kYXRhQWNjZXNzU2VydmljZQoKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5jdXJhdGlvblNlcnZpY2UKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5wcm9tb3Rpb25TZXJ2aWNlCgogICAgICAgICAgICBpbmNsdWRlIHBsYXRmb3JtLmNhbm9uaWNhbFN0b3JlCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0uc2VtYW50aWNJbmRleAogICAgICAgICAgICBpbmNsdWRlIHBsYXRmb3JtLmtub3dsZWRnZUdyYXBoCgogICAgICAgICAgICBpbmNsdWRlIHBsYXRmb3JtLmxvY2FsUnVudGltZQogICAgICAgICAgICBpbmNsdWRlIHBsYXRmb3JtLnByaXZhdGVSdW50aW1lCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0uZXh0ZXJuYWxSdW50aW1lCgogICAgICAgICAgICBhdXRvTGF5b3V0IHRiCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgcGxhdGZvcm0gIk9yY2hlc3RyYXRpb25BZ2VudFBsYW5lIiB7CiAgICAgICAgICAgIGluY2x1ZGUgdXNlcgogICAgICAgICAgICBpbmNsdWRlIGVudGVycHJpc2VBcHBsaWNhdGlvbnMKCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0uZXhwZXJpZW5jZUdhdGV3YXkKCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0ub3JjaGVzdHJhdGlvblNlcnZpY2UKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5wb2xpY3lTZXJ2aWNlCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0uY29udGV4dFNlcnZpY2UKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS50YXNrU3RhdGUKCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0uZG9tYWluQWdlbnQKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5hbmFseXNpc0FnZW50CiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0ucmVzZWFyY2hBZ2VudAoKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5yZXRyaWV2YWxTZXJ2aWNlCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0uZ3JhcGhTZXJ2aWNlCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0uZGF0YUFjY2Vzc1NlcnZpY2UKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5hcnRpZmFjdEV2aWRlbmNlU2VydmljZQogICAgICAgICAgICBpbmNsdWRlIHBsYXRmb3JtLndvcmtmbG93U2VydmljZQogICAgICAgICAgICBpbmNsdWRlIHBsYXRmb3JtLmFwcHJvdmFsU2VydmljZQoKICAgICAgICAgICAgaW5jbHVkZSBlbnRlcnByaXNlSWFtCiAgICAgICAgICAgIGluY2x1ZGUgb3BlcmF0aW9uYWxTeXN0ZW1zCiAgICAgICAgICAgIGluY2x1ZGUgcmVzZWFyY2hTb3VyY2VzCgogICAgICAgICAgICBhdXRvTGF5b3V0IHRiCiAgICAgICAgfQoKICAgICAgICBjb250YWluZXIgcGxhdGZvcm0gIkVudGVycHJpc2VEYXRhS25vd2xlZGdlUGxhbmUiIHsKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5yZXRyaWV2YWxTZXJ2aWNlCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0uZ3JhcGhTZXJ2aWNlCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0uZGF0YUFjY2Vzc1NlcnZpY2UKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5hcnRpZmFjdEV2aWRlbmNlU2VydmljZQoKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5jdXJhdGlvblNlcnZpY2UKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5wcm9tb3Rpb25TZXJ2aWNlCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0uaW5kZXhNYWludGVuYW5jZVNlcnZpY2UKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5ncmFwaExpZmVjeWNsZVNlcnZpY2UKCiAgICAgICAgICAgIGluY2x1ZGUgcGxhdGZvcm0uY2FuZGlkYXRlU3RvcmUKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5jYW5vbmljYWxTdG9yZQogICAgICAgICAgICBpbmNsdWRlIHBsYXRmb3JtLnNlbWFudGljSW5kZXgKICAgICAgICAgICAgaW5jbHVkZSBwbGF0Zm9ybS5rbm93bGVkZ2VHcmFwaAogICAgICAgICAgICBpbmNsdWRlIHBsYXRmb3JtLmFydGlmYWN0U3RvcmUKCiAgICAgICAgICAgIGluY2x1ZGUgb3BlcmF0aW9uYWxTeXN0ZW1zCgogICAgICAgICAgICBhdXRvTGF5b3V0IHRiCiAgICAgICAgfQoKICAgICAgICBkeW5hbWljIHBsYXRmb3JtICJLbm93bGVkZ2VMaWZlY3ljbGUiIHsKICAgICAgICAgICAgcGxhdGZvcm0ucmVzZWFyY2hBZ2VudCAtPiBwbGF0Zm9ybS5hcnRpZmFjdEV2aWRlbmNlU2VydmljZSAiMS4gUHJvZHVjZXMgZmluZGluZyBhbmQgZXZpZGVuY2UiCiAgICAgICAgICAgIHBsYXRmb3JtLmFydGlmYWN0RXZpZGVuY2VTZXJ2aWNlIC0+IHBsYXRmb3JtLmN1cmF0aW9uU2VydmljZSAiMi4gU3VwcGxpZXMgZWxpZ2libGUgZmluZGluZ3MgYW5kIGV2aWRlbmNlIgogICAgICAgICAgICBwbGF0Zm9ybS5jdXJhdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0uY2FuZGlkYXRlU3RvcmUgIjMuIENyZWF0ZXMgZ292ZXJuZWQga25vd2xlZGdlIGNhbmRpZGF0ZSIKICAgICAgICAgICAgcGxhdGZvcm0uY2FuZGlkYXRlU3RvcmUgLT4gcGxhdGZvcm0ucHJvbW90aW9uU2VydmljZSAiNC4gU3VibWl0cyBjYW5kaWRhdGUgZm9yIHZhbGlkYXRpb24gYW5kIHJldmlldyIKICAgICAgICAgICAgcGxhdGZvcm0ucHJvbW90aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5jYW5vbmljYWxTdG9yZSAiNS4gUHJvbW90ZXMgYXBwcm92ZWQga25vd2xlZGdlIgogICAgICAgICAgICBwbGF0Zm9ybS5wcm9tb3Rpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLmluZGV4TWFpbnRlbmFuY2VTZXJ2aWNlICI2LiBUcmlnZ2VycyBpbmRleCBtYWludGVuYW5jZSIKICAgICAgICAgICAgcGxhdGZvcm0uaW5kZXhNYWludGVuYW5jZVNlcnZpY2UgLT4gcGxhdGZvcm0uY2Fub25pY2FsU3RvcmUgIjcuIFJlYWRzIGFwcHJvdmVkIGNhbm9uaWNhbCBrbm93bGVkZ2UiCiAgICAgICAgICAgIHBsYXRmb3JtLmluZGV4TWFpbnRlbmFuY2VTZXJ2aWNlIC0+IHBsYXRmb3JtLnNlbWFudGljSW5kZXggIjguIE1haW50YWlucyBkZXJpdmVkIHNlbWFudGljIGluZGV4IgogICAgICAgICAgICBwbGF0Zm9ybS5wcm9tb3Rpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLmdyYXBoTGlmZWN5Y2xlU2VydmljZSAiOS4gU3VibWl0cyBhcHByb3ZlZCByZWxhdGlvbnNoaXAgY2hhbmdlcyIKICAgICAgICAgICAgcGxhdGZvcm0uZ3JhcGhMaWZlY3ljbGVTZXJ2aWNlIC0+IHBsYXRmb3JtLmtub3dsZWRnZUdyYXBoICIxMC4gTWFpbnRhaW5zIGdvdmVybmVkIGNhbm9uaWNhbCByZWxhdGlvbnNoaXBzIgoKICAgICAgICAgICAgYXV0b0xheW91dCBscgogICAgICAgIH0KCiAgICAgICAgZHluYW1pYyBwbGF0Zm9ybSAiTW9kZWxFeGVjdXRpb25UcnVzdFBvbGljeSIgewogICAgICAgICAgICBwbGF0Zm9ybS5vcmNoZXN0cmF0aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5kYXRhQ2xhc3NpZmljYXRpb25TZXJ2aWNlICIxLiBSZXF1ZXN0cyBleGVjdXRpb24tY29udGV4dCBjbGFzc2lmaWNhdGlvbiIKICAgICAgICAgICAgcGxhdGZvcm0uZGF0YUNsYXNzaWZpY2F0aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5kaXNjbG9zdXJlVHJhbnNmb3JtYXRpb25Qb2xpY3lTZXJ2aWNlICIyLiBQcm92aWRlcyBjbGFzc2lmaWVkIGV4ZWN1dGlvbiBjb250ZXh0IgogICAgICAgICAgICBwbGF0Zm9ybS5vcmNoZXN0cmF0aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5kaXNjbG9zdXJlVHJhbnNmb3JtYXRpb25Qb2xpY3lTZXJ2aWNlICIzLiBQcm92aWRlcyBjYXBhYmlsaXR5IGFuZCBpbnRlbmRlZCBwcm9jZXNzaW5nIHJlcXVpcmVtZW50cyIKICAgICAgICAgICAgcGxhdGZvcm0uZGlzY2xvc3VyZVRyYW5zZm9ybWF0aW9uUG9saWN5U2VydmljZSAtPiBwbGF0Zm9ybS5kYXRhVHJhbnNmb3JtYXRpb25TZXJ2aWNlICI0LiBEZWZpbmVzIHJlcXVpcmVkIGRpc2Nsb3N1cmUgdHJhbnNmb3JtYXRpb24iCiAgICAgICAgICAgIHBsYXRmb3JtLmRhdGFUcmFuc2Zvcm1hdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0udHJhbnNmb3JtYXRpb25WYWxpZGF0aW9uU2VydmljZSAiNS4gUHJvZHVjZXMgdHJhbnNmb3JtZWQgZXhlY3V0aW9uIHBheWxvYWQiCgogICAgICAgICAgICBwbGF0Zm9ybS50cmFuc2Zvcm1hdGlvblZhbGlkYXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLm1vZGVsRXhlY3V0aW9uUG9saWN5U2VydmljZSAiNi4gUHJvdmlkZXMgdmFsaWRhdGVkIHRyYW5zZm9ybWF0aW9uIHJlc3VsdCBhbmQgcmVzaWR1YWwgZGlzY2xvc3VyZSByaXNrIgogICAgICAgICAgICBwbGF0Zm9ybS50cmFuc2Zvcm1hdGlvblZhbGlkYXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLm9yY2hlc3RyYXRpb25TZXJ2aWNlICI3LiBSZXR1cm5zIHZhbGlkYXRlZCB0cmFuc2Zvcm1lZCBleGVjdXRpb24gcGF5bG9hZCIKCiAgICAgICAgICAgIHBsYXRmb3JtLnBvbGljeVNlcnZpY2UgLT4gcGxhdGZvcm0ubW9kZWxFeGVjdXRpb25Qb2xpY3lTZXJ2aWNlICI4LiBQcm92aWRlcyBhcHBsaWNhYmxlIGV4ZWN1dGlvbiBhbmQgZ292ZXJuYW5jZSBjb25zdHJhaW50cyIKICAgICAgICAgICAgcGxhdGZvcm0uZXZhbHVhdGlvblNlcnZpY2UgLT4gcGxhdGZvcm0ubW9kZWxFeGVjdXRpb25Qb2xpY3lTZXJ2aWNlICI5LiBQcm92aWRlcyBydW50aW1lIGNhcGFiaWxpdHkgcXVhbGlmaWNhdGlvbiIKCiAgICAgICAgICAgIHBsYXRmb3JtLm1vZGVsRXhlY3V0aW9uUG9saWN5U2VydmljZSAtPiBwbGF0Zm9ybS5vcmNoZXN0cmF0aW9uU2VydmljZSAiMTAuIFJldHVybnMgZWxpZ2libGUgcnVudGltZSBzZXQiCgogICAgICAgICAgICBwbGF0Zm9ybS5vcmNoZXN0cmF0aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5sb2NhbFJ1bnRpbWUgIjExLiBJbnZva2VzIHNlbGVjdGVkIGVsaWdpYmxlIHJ1bnRpbWUiCiAgICAgICAgICAgIHBsYXRmb3JtLm9yY2hlc3RyYXRpb25TZXJ2aWNlIC0+IHBsYXRmb3JtLnByaXZhdGVSdW50aW1lICIxMS4gSW52b2tlcyBzZWxlY3RlZCBlbGlnaWJsZSBydW50aW1lIgogICAgICAgICAgICBwbGF0Zm9ybS5vcmNoZXN0cmF0aW9uU2VydmljZSAtPiBwbGF0Zm9ybS5leHRlcm5hbFJ1bnRpbWUgIjExLiBJbnZva2VzIHNlbGVjdGVkIGVsaWdpYmxlIHJ1bnRpbWUiCgogICAgICAgICAgICBhdXRvTGF5b3V0IGxyCiAgICAgICAgfQoKICAgICAgICBzdHlsZXMgewoKICAgICAgICAgICAgZWxlbWVudCAiRWxlbWVudCIgewogICAgICAgICAgICAgICAgc2hhcGUgcm91bmRlZGJveAogICAgICAgICAgICAgICAgc3Ryb2tlV2lkdGggMwogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJQZXJzb24iIHsKICAgICAgICAgICAgICAgIHNoYXBlIHBlcnNvbgogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJEYXRhYmFzZSIgewogICAgICAgICAgICAgICAgc2hhcGUgY3lsaW5kZXIKICAgICAgICAgICAgfQoKICAgICAgICAgICAgZWxlbWVudCAiRXhwZXJpZW5jZSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjZTNmMmZkCiAgICAgICAgICAgICAgICBjb2xvciAjMGQ0N2ExCiAgICAgICAgICAgICAgICBzdHJva2UgIzE1NjVjMAogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJPcmNoZXN0cmF0aW9uIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNlZGU3ZjYKICAgICAgICAgICAgICAgIGNvbG9yICMzMTFiOTIKICAgICAgICAgICAgICAgIHN0cm9rZSAjNWUzNWIxCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGVsZW1lbnQgIkFnZW50IiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNmZmYzZTAKICAgICAgICAgICAgICAgIGNvbG9yICNlNjUxMDAKICAgICAgICAgICAgICAgIHN0cm9rZSAjZWY2YzAwCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGVsZW1lbnQgIlNlcnZpY2UiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI2U4ZjVlOQogICAgICAgICAgICAgICAgY29sb3IgIzFiNWUyMAogICAgICAgICAgICAgICAgc3Ryb2tlICMzODhlM2MKICAgICAgICAgICAgfQoKICAgICAgICAgICAgZWxlbWVudCAiR292ZXJuYW5jZSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjZmNlNGVjCiAgICAgICAgICAgICAgICBjb2xvciAjODgwZTRmCiAgICAgICAgICAgICAgICBzdHJva2UgI2MyMTg1YgogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJTdGF0ZSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjZWNlZmYxCiAgICAgICAgICAgICAgICBjb2xvciAjMjYzMjM4CiAgICAgICAgICAgICAgICBzdHJva2UgIzU0NmU3YQogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJDYW5kaWRhdGUiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI2ZmZjhlMQogICAgICAgICAgICAgICAgY29sb3IgIzhkNmUwMAogICAgICAgICAgICAgICAgc3Ryb2tlICNmOWE4MjUKICAgICAgICAgICAgfQoKICAgICAgICAgICAgZWxlbWVudCAiQ2Fub25pY2FsIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICNlOGVhZjYKICAgICAgICAgICAgICAgIGNvbG9yICMxYTIzN2UKICAgICAgICAgICAgICAgIHN0cm9rZSAjMzk0OWFiCiAgICAgICAgICAgIH0KCiAgICAgICAgICAgIGVsZW1lbnQgIkRlcml2ZWQiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI2VjZWZmMQogICAgICAgICAgICAgICAgY29sb3IgIzI2MzIzOAogICAgICAgICAgICAgICAgc3Ryb2tlICM1NDZlN2EKICAgICAgICAgICAgfQoKICAgICAgICAgICAgZWxlbWVudCAiQXJ0aWZhY3QiIHsKICAgICAgICAgICAgICAgIGJhY2tncm91bmQgI2Y1ZjVmNQogICAgICAgICAgICAgICAgY29sb3IgIzIxMjEyMQogICAgICAgICAgICAgICAgc3Ryb2tlICM2MTYxNjEKICAgICAgICAgICAgfQoKICAgICAgICAgICAgZWxlbWVudCAiUnVudGltZSIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjZTBmMmYxCiAgICAgICAgICAgICAgICBjb2xvciAjMDA0ZDQwCiAgICAgICAgICAgICAgICBzdHJva2UgIzAwODk3YgogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJCb3VuZGFyeSIgewogICAgICAgICAgICAgICAgc3Ryb2tlV2lkdGggMwogICAgICAgICAgICB9CgogICAgICAgICAgICBlbGVtZW50ICJHcmFwaCIgewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjZThlYWY2CiAgICAgICAgICAgICAgICBjb2xvciAjMWEyMzdlCiAgICAgICAgICAgICAgICBzdHJva2UgIzVjNmJjMAogICAgICAgICAgICB9CgogICAgICAgICAgICByZWxhdGlvbnNoaXAgIlJlbGF0aW9uc2hpcCIgewogICAgICAgICAgICAgICAgdGhpY2tuZXNzIDIKICAgICAgICAgICAgfQogICAgICAgIH0KICAgIH0KCiAgICBjb25maWd1cmF0aW9uIHsKICAgICAgICBzY29wZSBzb2Z0d2FyZXN5c3RlbQogICAgfQp9",
+    "structurizr.inspection.info" : "0",
+    "structurizr.inspection.ignore" : "0",
+    "structurizr.inspection.warning" : "0"
+  },
+  "views" : {
+    "configuration" : {
+      "lastSavedView" : "ContainerView",
+      "styles" : {
+        "elements" : [ {
+          "background" : "#fff3e0",
+          "color" : "#e65100",
+          "stroke" : "#ef6c00",
+          "tag" : "Agent"
+        }, {
+          "background" : "#f5f5f5",
+          "color" : "#212121",
+          "stroke" : "#616161",
+          "tag" : "Artifact"
+        }, {
+          "strokeWidth" : 3,
+          "tag" : "Boundary"
+        }, {
+          "background" : "#fff8e1",
+          "color" : "#8d6e00",
+          "stroke" : "#f9a825",
+          "tag" : "Candidate"
+        }, {
+          "background" : "#e8eaf6",
+          "color" : "#1a237e",
+          "stroke" : "#3949ab",
+          "tag" : "Canonical"
+        }, {
+          "shape" : "Cylinder",
+          "tag" : "Database"
+        }, {
+          "background" : "#eceff1",
+          "color" : "#263238",
+          "stroke" : "#546e7a",
+          "tag" : "Derived"
+        }, {
+          "shape" : "RoundedBox",
+          "strokeWidth" : 3,
+          "tag" : "Element"
+        }, {
+          "background" : "#e3f2fd",
+          "color" : "#0d47a1",
+          "stroke" : "#1565c0",
+          "tag" : "Experience"
+        }, {
+          "background" : "#fce4ec",
+          "color" : "#880e4f",
+          "stroke" : "#c2185b",
+          "tag" : "Governance"
+        }, {
+          "background" : "#e8eaf6",
+          "color" : "#1a237e",
+          "stroke" : "#5c6bc0",
+          "tag" : "Graph"
+        }, {
+          "background" : "#ede7f6",
+          "color" : "#311b92",
+          "stroke" : "#5e35b1",
+          "tag" : "Orchestration"
+        }, {
+          "shape" : "Person",
+          "tag" : "Person"
+        }, {
+          "background" : "#e0f2f1",
+          "color" : "#004d40",
+          "stroke" : "#00897b",
+          "tag" : "Runtime"
+        }, {
+          "background" : "#e8f5e9",
+          "color" : "#1b5e20",
+          "stroke" : "#388e3c",
+          "tag" : "Service"
+        }, {
+          "background" : "#eceff1",
+          "color" : "#263238",
+          "stroke" : "#546e7a",
+          "tag" : "State"
+        } ],
+        "relationships" : [ {
+          "tag" : "Relationship",
+          "thickness" : 2
+        } ]
+      },
+      "terminology" : { }
+    },
+    "containerViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "14",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "15",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "16",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "21",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "22",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "35",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "36",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "37",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "39",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "40",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "41",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "ArchitectureOverview",
+      "name" : "Container View: Enterprise Multi-Agent Platform",
+      "order" : 2,
+      "relationships" : [ {
+        "id" : "49"
+      }, {
+        "id" : "50"
+      }, {
+        "id" : "54"
+      }, {
+        "id" : "55"
+      }, {
+        "id" : "56"
+      }, {
+        "id" : "57"
+      }, {
+        "id" : "59"
+      }, {
+        "id" : "61"
+      }, {
+        "id" : "63"
+      }, {
+        "id" : "64"
+      }, {
+        "id" : "70"
+      }, {
+        "id" : "94"
+      }, {
+        "id" : "95"
+      }, {
+        "id" : "96"
+      } ],
+      "softwareSystemId" : "7"
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "8",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "11",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "12",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "13",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "14",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "15",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "16",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "17",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "19",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "20",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "33",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "OrchestrationAgentPlane",
+      "name" : "Container View: Enterprise Multi-Agent Platform",
+      "order" : 3,
+      "relationships" : [ {
+        "id" : "100"
+      }, {
+        "id" : "101"
+      }, {
+        "id" : "102"
+      }, {
+        "id" : "104"
+      }, {
+        "id" : "44"
+      }, {
+        "id" : "49"
+      }, {
+        "id" : "50"
+      }, {
+        "id" : "51"
+      }, {
+        "id" : "52"
+      }, {
+        "id" : "53"
+      }, {
+        "id" : "54"
+      }, {
+        "id" : "55"
+      }, {
+        "id" : "56"
+      }, {
+        "id" : "57"
+      }, {
+        "id" : "58"
+      }, {
+        "id" : "59"
+      }, {
+        "id" : "60"
+      }, {
+        "id" : "61"
+      }, {
+        "id" : "62"
+      }, {
+        "id" : "76"
+      }, {
+        "id" : "77"
+      }, {
+        "id" : "78"
+      }, {
+        "id" : "79"
+      }, {
+        "id" : "80"
+      }, {
+        "id" : "81"
+      } ],
+      "softwareSystemId" : "7"
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "elements" : [ {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "16",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "17",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "18",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "19",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "21",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "22",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "23",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "24",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "34",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "35",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "36",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "37",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "38",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalSoftwareSystemBoundariesVisible" : false,
+      "key" : "EnterpriseDataKnowledgePlane",
+      "name" : "Container View: Enterprise Multi-Agent Platform",
+      "order" : 4,
+      "relationships" : [ {
+        "id" : "101"
+      }, {
+        "id" : "63"
+      }, {
+        "id" : "64"
+      }, {
+        "id" : "65"
+      }, {
+        "id" : "66"
+      }, {
+        "id" : "67"
+      }, {
+        "id" : "68"
+      }, {
+        "id" : "69"
+      }, {
+        "id" : "70"
+      }, {
+        "id" : "71"
+      }, {
+        "id" : "72"
+      }, {
+        "id" : "73"
+      }, {
+        "id" : "74"
+      }, {
+        "id" : "75"
+      } ],
+      "softwareSystemId" : "7"
+    } ],
+    "dynamicViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "elementId" : "7",
+      "elements" : [ {
+        "id" : "15",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "19",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "21",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "22",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "23",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "24",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "34",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "35",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "36",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "37",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalBoundariesVisible" : false,
+      "key" : "KnowledgeLifecycle",
+      "name" : "Dynamic View: Enterprise Multi-Agent Platform",
+      "order" : 5,
+      "relationships" : [ {
+        "description" : "1. Produces finding and evidence",
+        "id" : "62",
+        "order" : "1",
+        "response" : false
+      }, {
+        "description" : "2. Supplies eligible findings and evidence",
+        "id" : "67",
+        "order" : "2",
+        "response" : false
+      }, {
+        "description" : "3. Creates governed knowledge candidate",
+        "id" : "68",
+        "order" : "3",
+        "response" : false
+      }, {
+        "description" : "4. Submits candidate for validation and review",
+        "id" : "69",
+        "order" : "4",
+        "response" : false
+      }, {
+        "description" : "5. Promotes approved knowledge",
+        "id" : "70",
+        "order" : "5",
+        "response" : false
+      }, {
+        "description" : "6. Triggers index maintenance",
+        "id" : "71",
+        "order" : "6",
+        "response" : false
+      }, {
+        "description" : "7. Reads approved canonical knowledge",
+        "id" : "72",
+        "order" : "7",
+        "response" : false
+      }, {
+        "description" : "8. Maintains derived semantic index",
+        "id" : "73",
+        "order" : "8",
+        "response" : false
+      }, {
+        "description" : "9. Submits approved relationship changes",
+        "id" : "74",
+        "order" : "9",
+        "response" : false
+      }, {
+        "description" : "10. Maintains governed canonical relationships",
+        "id" : "75",
+        "order" : "10",
+        "response" : false
+      } ]
+    }, {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "elementId" : "7",
+      "elements" : [ {
+        "id" : "9",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "10",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "25",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "28",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "29",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "30",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "31",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "32",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "39",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "40",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "41",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "externalBoundariesVisible" : false,
+      "key" : "ModelExecutionTrustPolicy",
+      "name" : "Dynamic View: Enterprise Multi-Agent Platform",
+      "order" : 6,
+      "relationships" : [ {
+        "description" : "1. Requests execution-context classification",
+        "id" : "105",
+        "order" : "1",
+        "response" : false
+      }, {
+        "description" : "2. Provides classified execution context",
+        "id" : "107",
+        "order" : "2",
+        "response" : false
+      }, {
+        "description" : "3. Provides capability and intended processing requirements",
+        "id" : "106",
+        "order" : "3",
+        "response" : false
+      }, {
+        "description" : "4. Defines required disclosure transformation",
+        "id" : "108",
+        "order" : "4",
+        "response" : false
+      }, {
+        "description" : "5. Produces transformed execution payload",
+        "id" : "109",
+        "order" : "5",
+        "response" : false
+      }, {
+        "description" : "6. Provides validated transformation result and residual disclosure risk",
+        "id" : "110",
+        "order" : "6",
+        "response" : false
+      }, {
+        "description" : "7. Returns validated transformed execution payload",
+        "id" : "111",
+        "order" : "7",
+        "response" : false
+      }, {
+        "description" : "8. Provides applicable execution and governance constraints",
+        "id" : "114",
+        "order" : "8",
+        "response" : false
+      }, {
+        "description" : "9. Provides runtime capability qualification",
+        "id" : "112",
+        "order" : "9",
+        "response" : false
+      }, {
+        "description" : "10. Returns eligible runtime set",
+        "id" : "113",
+        "order" : "10",
+        "response" : false
+      }, {
+        "description" : "11. Invokes selected eligible runtime",
+        "id" : "94",
+        "order" : "11",
+        "response" : false
+      }, {
+        "description" : "11. Invokes selected eligible runtime",
+        "id" : "95",
+        "order" : "12",
+        "response" : false
+      }, {
+        "description" : "11. Invokes selected eligible runtime",
+        "id" : "96",
+        "order" : "13",
+        "response" : false
+      } ]
+    } ],
+    "systemContextViews" : [ {
+      "automaticLayout" : {
+        "edgeSeparation" : 50,
+        "nodeSeparation" : 50,
+        "rankDirection" : "LeftRight",
+        "rankSeparation" : 100,
+        "vertices" : true
+      },
+      "elements" : [ {
+        "id" : "1",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "2",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "3",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "4",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "5",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "6",
+        "x" : 0,
+        "y" : 0
+      }, {
+        "id" : "7",
+        "x" : 0,
+        "y" : 0
+      } ],
+      "enterpriseBoundaryVisible" : true,
+      "key" : "SystemContext",
+      "name" : "System Context View: Enterprise Multi-Agent Platform",
+      "order" : 1,
+      "relationships" : [ {
+        "id" : "42"
+      }, {
+        "id" : "43"
+      }, {
+        "id" : "45"
+      }, {
+        "id" : "46"
+      }, {
+        "id" : "47"
+      }, {
+        "id" : "48"
+      } ],
+      "softwareSystemId" : "7"
+    } ]
+  }
+}

@@ -1,0 +1,5 @@
+# Structurizr local runtime state
+.structurizr/
+
+# macOS
+.DS_Store
