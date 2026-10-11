@@ -4,8 +4,8 @@
 
 This repository contains two published versions of the Enterprise Multi-Agent Architecture:
 
-* Version 2 (current) — The extended reference architecture with explicit governance boundaries, probabilistic Context Need Assessment, governed knowledge lifecycles, and model execution trust policies.
-* Version 1 (original) — The original reference architecture, preserved unchanged as a historical release.
+* **[Version 2 (current)](https://github.com/voml77/enterprise-multi-agent-architecture/releases/tag/v2.0.0)** — The extended reference architecture with explicit governance boundaries, probabilistic Context Need Assessment, governed knowledge lifecycles, and model execution trust policies.
+* **[Version 1 (original)](https://github.com/voml77/enterprise-multi-agent-architecture/releases/tag/v1.0.0)** — The original reference architecture, preserved unchanged as a historical release.
 
 Version 2 is maintained on the main branch. Version 1 remains accessible through its dedicated Git tag and GitHub release.
 
