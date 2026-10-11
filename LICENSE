@@ -1,30 +1,235 @@
-Creative Commons Attribution 4.0 International
-
-Copyright © 2026 Vadim Ott
-
-The architecture model, documentation, and diagrams in this repository are licensed
-under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
-
-You are free to share and adapt this material for any purpose, including commercially,
-provided that appropriate credit is given, a link to the license is provided, and
-changes are indicated.
-
-License:
-https://creativecommons.org/licenses/by/4.0/
-
-Legal Code:
-https://creativecommons.org/licenses/by/4.0/legalcode
-
-Suggested attribution:
-
 Enterprise Multi-Agent Architecture
-by Vadim Ott
-Licensed under CC BY 4.0.
 
-If changes have been made, they should be indicated as required by the license.
+Research & Evaluation License (REAL) — Version 1.0
 
-This license applies to the architecture model, documentation, and diagrams contained
-in this repository unless otherwise stated.
+Copyright © 2026 Vadim Ott. All rights reserved except as expressly granted below.
 
-Software source code, if added to this repository in the future, is not automatically
-covered by this license and may be provided under a separate software license.
+1. Purpose and Scope
+
+This license governs the use of the documentation, architecture models, diagrams, explanatory materials, and other copyright-protected content comprising Enterprise Multi-Agent Architecture, Version 2 (the “Licensed Materials”).
+
+The purpose of this license is to make the Licensed Materials publicly accessible for study, education, and non-commercial academic research while reserving commercial exploitation and enterprise implementation rights to the Rights Holder.
+
+The Rights Holder is Vadim Ott, unless otherwise expressly identified in the applicable release.
+
+This license applies only to materials expressly designated as licensed under REAL v1.0.
+
+It does not replace or modify licenses previously granted for earlier versions of the architecture, including Version 1 released under Creative Commons Attribution 4.0 International (CC BY 4.0).
+
+2. Permitted Uses
+
+Subject to the conditions of this license, the Rights Holder grants a non-exclusive, worldwide, royalty-free, non-transferable license to exercise the applicable copyright rights in the Licensed Materials for the following purposes.
+
+2.1 Public Access and Private Study
+
+Anyone may:
+
+* Access, read, and examine the publicly available Licensed Materials.
+* Download and retain copies for personal reference and private study.
+* Analyze and discuss the architecture for educational or informational purposes.
+* Reference the architecture in discussions, reviews, and independent commentary.
+
+These permissions do not authorize commercial redistribution or implementation activities otherwise restricted by this license.
+
+2.2 Non-Commercial Education
+
+Students and educators may use the Licensed Materials for non-commercial educational activities, including:
+
+* University courses and seminars.
+* Bachelor’s and master’s theses.
+* Doctoral dissertations.
+* Academic presentations and teaching activities.
+* Non-commercial educational exercises.
+
+Such use is subject to the attribution requirements in Section 3.
+
+2.3 Non-Commercial Academic Research
+
+Academic researchers may use the Licensed Materials for independent, non-commercial scientific research, including architectural analysis, comparative studies, academic evaluation, and scholarly publications.
+
+This permission includes the development of non-commercial academic research prototypes under the conditions specified in Section 5.
+
+2.4 Academic Publications
+
+Academic publications may discuss, analyze, critique, and reference the architecture.
+
+Where a publication reproduces or adapts copyright-protected Licensed Materials beyond what applicable law independently permits, the permissions and conditions of this license apply.
+
+Nothing in this license restricts statutory quotation rights or other uses permitted independently by applicable law.
+
+3. Attribution Requirements
+
+When exercising rights granted under this license, users must provide appropriate attribution to the Licensed Materials.
+
+Attribution must include, where reasonably practicable:
+
+1. Author: Vadim Ott.
+2. Project: Enterprise Multi-Agent Architecture.
+3. Version: The architecture version used.
+4. Source: A reference to the official repository or applicable release.
+5. License: Enterprise Multi-Agent Architecture – Research & Evaluation License (REAL), Version 1.0.
+6. Modifications: An indication of material changes made to reproduced or adapted Licensed Materials.
+
+Attribution must not imply endorsement, sponsorship, or approval by the Rights Holder.
+
+For academic publications, the following citation format is recommended:
+
+Ott, V. (2026). Enterprise Multi-Agent Architecture (Version 2). Reference architecture and architectural rationale. [Official repository or release URL].
+
+Academic institutions may adapt this citation to their required citation style.
+
+These requirements apply to permissions granted under this license and do not impose additional conditions on uses independently permitted by applicable law.
+
+4. Non-Commercial Academic Use
+
+For the purposes of this license, Non-Commercial Academic Use means use of the Licensed Materials that:
+
+a. Is undertaken primarily for education, teaching, independent scientific research, or academic evaluation;
+
+b. Is not primarily intended to obtain commercial advantage or monetary compensation through exploitation of the Licensed Materials;
+
+c. Does not involve productive enterprise deployment or the provision of commercial products or services based on licensed uses of the Licensed Materials; and
+
+d. Complies with the attribution and other applicable conditions of this license.
+
+The fact that research is conducted at an academic institution does not automatically establish that it is non-commercial.
+
+Likewise, the receipt of a scholarship, public research grant, or institutional funding does not automatically make academic research commercial.
+
+Research conducted in cooperation with commercial enterprises must be assessed according to its actual purpose, contractual arrangements, exploitation rights, and intended use of the Licensed Materials.
+
+Where the intended use falls outside the permissions expressly granted by this license, separate written authorization is required.
+
+5. Academic Research Prototypes
+
+Non-commercial academic researchers may develop research prototypes based on the Licensed Materials for the purpose of studying, testing, comparing, or evaluating the documented architecture.
+
+Such prototypes must:
+
+a. Be developed and used within a qualifying non-commercial academic context;
+
+b. Remain experimental or educational in purpose;
+
+c. Not be deployed as productive enterprise systems under rights granted by this license;
+
+d. Not be commercially exploited, licensed, or transferred for commercial exploitation under rights granted by this license;
+
+e. Comply with the attribution requirements when reproducing or adapting protected Licensed Materials.
+
+Any subsequent use of copyright-protected Licensed Materials beyond these permissions requires separate written authorization.
+
+The development of an independently created implementation that does not exercise copyright or other rights controlled by the Rights Holder is not restricted by this license.
+
+6. Enterprise and Commercial Licensing
+
+The permissions granted by this license do not include commercial exploitation of the Licensed Materials or their use as licensed implementation materials for enterprise deployments.
+
+To the extent an activity requires authorization under rights controlled by the Rights Holder, prior written authorization is required for:
+
+a. Productive enterprise implementations using the Licensed Materials;
+
+b. Internal enterprise proofs of concept or technical evaluations that reproduce or adapt protected Licensed Materials beyond the permissions granted herein;
+
+c. Commercial software products or services incorporating protected Licensed Materials;
+
+d. Customer projects, consulting deliverables, or commercial architecture offerings incorporating protected Licensed Materials;
+
+e. Commercial redistribution, resale, or licensing of the Licensed Materials;
+
+f. Commercial exploitation of adaptations or derivative materials incorporating protected expression from the Licensed Materials.
+
+Public availability does not constitute a general commercial or enterprise implementation license.
+
+Commercial and enterprise permissions may be negotiated separately with the Rights Holder.
+
+No obligation to grant such permissions is created by this license.
+
+Licensing inquiries:
+
+architecture.licensing@vadim-ott.de
+
+7. Redistribution and Derivative Materials
+
+7.1 Permitted Academic Distribution
+
+Users may reproduce and distribute reasonable portions of the Licensed Materials within qualifying non-commercial educational or academic activities, provided that:
+
+* Appropriate attribution is maintained.
+* The applicable license is identified.
+* Any material modifications are disclosed.
+* The distribution is not used for commercial exploitation.
+* The distribution does not imply endorsement by the Rights Holder.
+
+7.2 Complete Redistribution
+
+Redistribution of the complete Licensed Materials, substantial collections of architecture diagrams, or substantially complete modified versions is not authorized by this license without prior written permission, except where independently permitted by applicable law.
+
+7.3 Derivative Materials
+
+Creation and use of adaptations of protected Licensed Materials are permitted only to the extent expressly authorized for non-commercial academic purposes under this license.
+
+Publication, redistribution, sublicensing, or commercial exploitation of such adaptations outside those permissions requires separate written authorization.
+
+This section does not restrict independently created works that do not reproduce protected expression or otherwise require permission from the Rights Holder.
+
+8. Intellectual Property and Reserved Rights
+
+The Rights Holder retains all copyright and other applicable intellectual property rights in the Licensed Materials, except for rights expressly granted under this license.
+
+No trademark, patent, trade secret, or other intellectual property license is granted by implication.
+
+Nothing in this license grants exclusive rights over abstract architectural concepts, general design principles, methods, or ideas that are not protected by applicable intellectual property law.
+
+No permission is granted to use the Rights Holder’s name or project identity to imply endorsement, sponsorship, certification, or official affiliation.
+
+All rights not expressly granted are reserved, subject to applicable law.
+
+9. Termination
+
+The permissions granted under this license terminate automatically if a licensee materially breaches its conditions.
+
+Termination does not affect rights or permissions that exist independently of this license under applicable law.
+
+Upon termination, the licensee must cease activities that depend on permissions granted under this license and that are no longer authorized.
+
+Termination does not retroactively invalidate lawful uses completed before the breach.
+
+Reinstatement may be granted by the Rights Holder in writing.
+
+Any separate commercial or enterprise licensing agreement is governed by its own terms.
+
+10. Disclaimer of Warranties and Limitation of Liability
+
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE LICENSED MATERIALS ARE PROVIDED “AS IS” AND “AS AVAILABLE,” WITHOUT WARRANTIES OF ANY KIND.
+
+THE RIGHTS HOLDER MAKES NO REPRESENTATION THAT THE LICENSED MATERIALS ARE COMPLETE, ERROR-FREE, SUITABLE FOR A PARTICULAR PURPOSE, OR COMPLIANT WITH ANY SPECIFIC REGULATORY OR SECURITY REQUIREMENT.
+
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, THE RIGHTS HOLDER SHALL NOT BE LIABLE FOR DAMAGES ARISING FROM THE USE OF THE LICENSED MATERIALS, EXCEPT WHERE LIABILITY CANNOT LAWFULLY BE EXCLUDED OR LIMITED.
+
+NOTHING IN THIS LICENSE EXCLUDES OR LIMITS LIABILITY THAT CANNOT BE EXCLUDED OR LIMITED UNDER APPLICABLE LAW.
+
+11. General Provisions
+
+11.1 No Obligation to Provide Support
+
+This license does not create any obligation to provide technical assistance, implementation support, maintenance, updates, or future releases.
+
+11.2 Separate Agreements
+
+The Rights Holder may grant additional permissions through separate written agreements.
+
+Such agreements do not modify the permissions granted to other licensees under this license.
+
+11.3 Severability
+
+If any provision of this license is held unenforceable, the remaining provisions shall remain effective to the extent permitted by applicable law.
+
+11.4 No Waiver of Statutory Rights
+
+Nothing in this license limits statutory exceptions, limitations, or other rights that apply independently of this license.
+
+11.5 Earlier Architecture Versions
+
+This license applies only to the designated Version 2 Licensed Materials.
+
+It does not alter the licensing terms of Enterprise Multi-Agent Architecture Version 1 or revoke permissions previously granted under CC BY 4.0.

@@ -11,7 +11,7 @@ workspace "Enterprise Multi-Agent Architecture" "Reference architecture for gove
 
         operationalSystems = softwareSystem "Operational Enterprise Systems" "Systems of record providing governed operational enterprise data."
 
-        researchSources = softwareSystem "Approved External Research Sources" "Policy-approved external sources used for governed research when trusted enterprise knowledge is insufficient."
+        researchSources = softwareSystem "Approved External Research Sources" "Policy-approved external information sources used exclusively for explicitly authorized, task-scoped research."
 
         externalModelProviders = softwareSystem "Approved External Model Providers" "Approved external providers supplying eligible model execution capabilities."
 
@@ -34,7 +34,11 @@ workspace "Enterprise Multi-Agent Architecture" "Reference architecture for gove
                     tags "Orchestration"
                 }
 
-                contextService = container "Context Assembly Service" "Builds policy-scoped context for bounded agent execution." {
+                contextService = container "Context Assembly Service" "Assembles governed, task-scoped acquisition results into bounded execution context while preserving provenance, classification and applicable usage constraints." {
+                    tags "Orchestration"
+                }
+
+                contextNeedAssessmentService = container "Context Need Assessment Service" "Probabilistically assesses context sufficiency and produces evidence about additional governed context needs without authorizing or executing context acquisition." {
                     tags "Orchestration"
                 }
 
@@ -53,19 +57,19 @@ workspace "Enterprise Multi-Agent Architecture" "Reference architecture for gove
                     tags "Agent"
                 }
 
-                researchAgent = container "Research Agent" "Acquires external knowledge when trusted enterprise knowledge is insufficient and policy permits research." {
+                researchAgent = container "Research Agent" "Acquires task-scoped external evidence from approved sources only through explicitly authorized research tasks, preserving external provenance and trust boundaries." {
                     tags "Agent"
                 }
 
-                retrievalService = container "Knowledge Retrieval Service" "Retrieves trusted enterprise knowledge through governed semantic retrieval." {
+                retrievalService = container "Knowledge Retrieval Service" "Retrieves eligible canonical enterprise knowledge through policy-governed, task-scoped semantic retrieval while preserving source authority and provenance." {
                     tags "Service"
                 }
 
-                graphService = container "Graph Query Service" "Provides governed traversal and queries over enterprise relationships." {
+                graphService = container "Graph Query Service" "Provides policy-governed, task-scoped relationship context through authorized enterprise graph queries without granting authority through graph relationships." {
                     tags "Service"
                 }
                 
-                dataAccessService = container "Enterprise Data Access Service" "Mediates policy-controlled access to approved operational enterprise data." {
+                dataAccessService = container "Enterprise Data Access Service" "Mediates authorized, purpose-scoped access to operational enterprise data through governed data contracts, enforcing source-level constraints and acquisition minimization." {
                     tags "Service"
                 }
 
@@ -112,19 +116,19 @@ workspace "Enterprise Multi-Agent Architecture" "Reference architecture for gove
                     tags "Governance"
                 }
 
-                disclosureTransformationPolicyService = container "Disclosure Transformation Policy Service" "Determines required disclosure transformations for the intended capability and processing class." {
+                disclosureTransformationPolicyService = container "Disclosure Transformation Policy Service" "Approves minimal disclosure or denies it based on classification, authorized purpose, task utility, capability needs, processing class and disclosure constraints." {
                     tags "Governance"
                 }
 
-                dataTransformationService = container "Data Transformation Service" "Applies approved redaction, masking, pseudonymization, aggregation or generalization to execution-scoped data." {
+                dataTransformationService = container "Data Transformation Service" "Applies policy-selected masking, redaction, pseudonymization, aggregation or generalization without disclosure authority. Transformed payloads are non-persistent by default." {
                     tags "Governance"
                 }
 
-                transformationValidationService = container "Transformation Validation Service" "Validates transformed payloads and assesses residual disclosure and re-identification risk." {
+                transformationValidationService = container "Transformation Validation Service" "Independently validates transformed execution payloads against disclosure constraints and assesses residual disclosure and re-identification risk without overriding policy decisions." {
                     tags "Governance"
                 }
 
-                modelExecutionPolicyService = container "Model Execution Policy Service" "Determines eligible model runtimes from validated disclosure risk, capability requirements and execution policy." {
+                modelExecutionPolicyService = container "Model Execution Policy Service" "Determines eligible model runtimes from validated disclosure constraints, capability qualification, governance requirements and operational eligibility; denies execution when no compliant runtime exists." {
                     tags "Governance"
                 }
 
@@ -192,8 +196,15 @@ workspace "Enterprise Multi-Agent Architecture" "Reference architecture for gove
 
         platform.orchestrationService -> platform.policyService "Requests policy decision"
         platform.orchestrationService -> platform.contextService "Requests scoped context"
-        platform.orchestrationService -> platform.taskState "Reads and updates task state"
+        platform.contextService -> platform.orchestrationService "Provides policy-scoped assembled context"
+        platform.orchestrationService -> platform.contextNeedAssessmentService "Requests context sufficiency assessment"
 
+        platform.contextNeedAssessmentService -> platform.orchestrationService "Provides context-need assessment evidence"
+        platform.orchestrationService -> platform.policyService "Requests authorization for additional governed context acquisition"
+
+        platform.policyService -> platform.orchestrationService "Returns governed context acquisition decision"
+
+        platform.orchestrationService -> platform.taskState "Reads and updates task state"
         platform.orchestrationService -> platform.domainAgent "Assigns bounded domain tasks"
         platform.orchestrationService -> platform.analysisAgent "Assigns analytical tasks"
         platform.orchestrationService -> platform.researchAgent "Assigns approved research tasks"
@@ -211,6 +222,10 @@ workspace "Enterprise Multi-Agent Architecture" "Reference architecture for gove
         platform.retrievalService -> platform.canonicalStore "Rehydrates canonical artifacts"
         platform.graphService -> platform.knowledgeGraph "Queries"
         platform.artifactEvidenceService -> platform.artifactStore "Persists artifacts and evidence"
+        
+        platform.retrievalService -> platform.contextService "Provides governed knowledge context"
+        platform.graphService -> platform.contextService "Provides governed relationship context"
+        platform.dataAccessService -> platform.contextService "Provides governed operational data context"
 
         platform.artifactEvidenceService -> platform.curationService "Provides eligible findings and evidence"
         platform.curationService -> platform.candidateStore "Creates governed candidates"
@@ -265,7 +280,7 @@ workspace "Enterprise Multi-Agent Architecture" "Reference architecture for gove
         platform.orchestrationService -> platform.disclosureTransformationPolicyService "Provides capability and intended processing requirements"
         platform.dataClassificationService -> platform.disclosureTransformationPolicyService "Provides classified execution context"
 
-        platform.disclosureTransformationPolicyService -> platform.dataTransformationService "Defines required disclosure transformation"
+        platform.disclosureTransformationPolicyService -> platform.dataTransformationService "Defines approved disclosure representation and required transformations"
         platform.dataTransformationService -> platform.transformationValidationService "Provides transformed execution payload"
 
         platform.transformationValidationService -> platform.modelExecutionPolicyService "Provides validated transformation result and residual disclosure risk"
@@ -327,6 +342,7 @@ workspace "Enterprise Multi-Agent Architecture" "Reference architecture for gove
             include platform.orchestrationService
             include platform.policyService
             include platform.contextService
+            include platform.contextNeedAssessmentService
             include platform.taskState
 
             include platform.domainAgent
@@ -370,38 +386,38 @@ workspace "Enterprise Multi-Agent Architecture" "Reference architecture for gove
         }
 
         dynamic platform "KnowledgeLifecycle" {
-            platform.researchAgent -> platform.artifactEvidenceService "1. Produces finding and evidence"
-            platform.artifactEvidenceService -> platform.curationService "2. Supplies eligible findings and evidence"
-            platform.curationService -> platform.candidateStore "3. Creates governed knowledge candidate"
-            platform.candidateStore -> platform.promotionService "4. Submits candidate for validation and review"
-            platform.promotionService -> platform.canonicalStore "5. Promotes approved knowledge"
-            platform.promotionService -> platform.indexMaintenanceService "6. Triggers index maintenance"
-            platform.indexMaintenanceService -> platform.canonicalStore "7. Reads approved canonical knowledge"
-            platform.indexMaintenanceService -> platform.semanticIndex "8. Maintains derived semantic index"
-            platform.promotionService -> platform.graphLifecycleService "9. Submits approved relationship changes"
-            platform.graphLifecycleService -> platform.knowledgeGraph "10. Maintains governed canonical relationships"
+            platform.researchAgent -> platform.artifactEvidenceService " Produces finding and evidence"
+            platform.artifactEvidenceService -> platform.curationService " Supplies eligible findings and evidence"
+            platform.curationService -> platform.candidateStore " Creates governed knowledge candidate"
+            platform.candidateStore -> platform.promotionService " Submits candidate for validation and review"
+            platform.promotionService -> platform.canonicalStore " Promotes approved knowledge"
+            platform.promotionService -> platform.indexMaintenanceService " Triggers index maintenance"
+            platform.indexMaintenanceService -> platform.canonicalStore " Reads approved canonical knowledge"
+            platform.indexMaintenanceService -> platform.semanticIndex " Maintains derived semantic index"
+            platform.promotionService -> platform.graphLifecycleService " Submits approved relationship changes"
+            platform.graphLifecycleService -> platform.knowledgeGraph " Maintains governed canonical relationships"
 
             autoLayout lr
         }
 
         dynamic platform "ModelExecutionTrustPolicy" {
-            platform.orchestrationService -> platform.dataClassificationService "1. Requests execution-context classification"
-            platform.dataClassificationService -> platform.disclosureTransformationPolicyService "2. Provides classified execution context"
-            platform.orchestrationService -> platform.disclosureTransformationPolicyService "3. Provides capability and intended processing requirements"
-            platform.disclosureTransformationPolicyService -> platform.dataTransformationService "4. Defines required disclosure transformation"
-            platform.dataTransformationService -> platform.transformationValidationService "5. Produces transformed execution payload"
+            platform.orchestrationService -> platform.dataClassificationService "Requests execution-context classification"
+            platform.dataClassificationService -> platform.disclosureTransformationPolicyService "Provides classified execution context"
+            platform.orchestrationService -> platform.disclosureTransformationPolicyService "Provides capability and intended processing requirements"
+            platform.disclosureTransformationPolicyService -> platform.dataTransformationService "Defines approved disclosure representation and required transformations"
+            platform.dataTransformationService -> platform.transformationValidationService "Produces transformed execution payload"
 
-            platform.transformationValidationService -> platform.modelExecutionPolicyService "6. Provides validated transformation result and residual disclosure risk"
-            platform.transformationValidationService -> platform.orchestrationService "7. Returns validated transformed execution payload"
+            platform.transformationValidationService -> platform.modelExecutionPolicyService "Provides validated transformation result and residual disclosure risk"
+            platform.transformationValidationService -> platform.orchestrationService "Returns validated transformed execution payload"
 
-            platform.policyService -> platform.modelExecutionPolicyService "8. Provides applicable execution and governance constraints"
-            platform.evaluationService -> platform.modelExecutionPolicyService "9. Provides runtime capability qualification"
+            platform.policyService -> platform.modelExecutionPolicyService "Provides applicable execution and governance constraints"
+            platform.evaluationService -> platform.modelExecutionPolicyService "Provides runtime capability qualification"
 
-            platform.modelExecutionPolicyService -> platform.orchestrationService "10. Returns eligible runtime set"
+            platform.modelExecutionPolicyService -> platform.orchestrationService "Returns eligible runtime set"
 
-            platform.orchestrationService -> platform.localRuntime "11. Invokes selected eligible runtime"
-            platform.orchestrationService -> platform.privateRuntime "11. Invokes selected eligible runtime"
-            platform.orchestrationService -> platform.externalRuntime "11. Invokes selected eligible runtime"
+            platform.orchestrationService -> platform.localRuntime "Invokes selected eligible runtime"
+            platform.orchestrationService -> platform.privateRuntime "Invokes selected eligible runtime"
+            platform.orchestrationService -> platform.externalRuntime "Invokes selected eligible runtime"
 
             autoLayout lr
         }

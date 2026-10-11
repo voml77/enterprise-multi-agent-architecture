@@ -1,5 +1,16 @@
 # Enterprise Multi-Agent Architecture
 
+## Versions
+
+This repository contains two published versions of the Enterprise Multi-Agent Architecture:
+
+* Version 2 (current) — The extended reference architecture with explicit governance boundaries, probabilistic Context Need Assessment, governed knowledge lifecycles, and model execution trust policies.
+* Version 1 (original) — The original reference architecture, preserved unchanged as a historical release.
+
+Version 2 is maintained on the main branch. Version 1 remains accessible through its dedicated Git tag and GitHub release.
+
+Each version retains its respective license.
+
 A reference architecture for governed enterprise multi-agent systems that separates **agency, authority, knowledge, and model execution** instead of concentrating them in a central supervisor agent.
 
 The architecture combines bounded autonomous reasoning with deterministic orchestration and explicit governance. Agents can reason, plan, use approved capabilities, and produce findings or work products — but they do not own enterprise state, grant themselves access, promote knowledge, or decide which model runtime may receive a particular payload.
@@ -34,7 +45,7 @@ Three agent archetypes provide autonomous reasoning where it adds value:
 
 - **Domain Support Agent** — performs domain-specific reasoning using approved knowledge, graph, and data capabilities.
 - **Analysis Agent** — performs iterative analysis over governed enterprise data and produces analyses and evidence.
-- **Research Agent** — investigates external sources when enterprise knowledge is insufficient and policy permits research.
+- **Research Agent** — investigates external sources when explicitly authorized for the task, producing findings and evidence rather than canonical enterprise knowledge.
 
 Everything around those agents deliberately does not become an agent merely because an LLM could perform the task. Identity resolution, policy decisions, retrieval, data access, approvals, knowledge promotion, index maintenance, audit, and runtime eligibility remain explicit platform responsibilities.
 
@@ -51,6 +62,7 @@ The architecture is built around a small number of deliberately strict boundarie
 - **Vector Index ≠ Source of Truth.** Semantic indexes locate knowledge; canonical stores remain authoritative.
 - **Agents propose; policy promotes.** Agents may create findings, evidence, analyses, and action requests, but they do not directly mutate canonical enterprise state.
 - **Authorization travels with the request.** Delegating work to another agent or capability never implies privilege escalation.
+- **Assessment ≠ Authorization.** Probabilistic Context Need Assessment estimates whether additional context may be useful; deterministic policy authorizes acquisition, and orchestration coordinates its execution.
 - **Policy says what MAY; evaluation says what CAN.** Runtime permission and runtime capability are evaluated independently before execution.
 
 These boundaries allow autonomous reasoning without transferring governance authority to autonomous components.
@@ -86,7 +98,7 @@ An Analysis Agent may iteratively request data required for its task, but it doe
 
 ### 3. Research and knowledge promotion
 
-When governed enterprise knowledge is insufficient, external research may be permitted as a separate capability. The Research Agent produces findings and evidence rather than canonical knowledge.
+External research is a separate, explicitly authorized acquisition capability. Insufficient enterprise knowledge does not automatically trigger research. The Research Agent produces findings and evidence rather than canonical knowledge.
 
 New knowledge follows a governed lifecycle:
 
@@ -101,6 +113,7 @@ Derived semantic indexes and governed graph relationships are updated only after
 ```text
 .
 ├── README.md
+├── LICENSE
 ├── ARCHITECTURE_RATIONALE.md
 ├── architecture/
 │   ├── workspace.dsl
@@ -138,8 +151,16 @@ Aelio contributed to architectural exploration, critical review, alternative eva
 
 ## License
 
-The architecture model, documentation, and diagrams in this repository are licensed under the **Creative Commons Attribution 4.0 International License (CC BY 4.0)**.
+Version 2 of the Enterprise Multi-Agent Architecture is published under the Research & Evaluation License (REAL), Version 1.0.
 
-You may share, adapt, and reuse the material for any purpose, including commercially, provided that appropriate attribution is given and changes are indicated.
+The license permits public reading, personal study, and non-commercial academic research, including qualifying research prototypes, subject to its terms and attribution requirements.
 
-See [`LICENSE`](LICENSE) for details.
+Commercial use of the protected architecture materials requires prior written permission from the copyright holder.
+
+The original Version 1 remains available under the Creative Commons Attribution 4.0 International License (CC BY 4.0) through its historical release.
+
+The licensing terms of Version 2 do not retroactively alter the license granted for Version 1.
+
+See [LICENSE](LICENSE) for the complete terms applicable to Version 2.
+
+For licensing inquiries: architecture.licensing@vadim-ott.de

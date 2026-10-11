@@ -75,6 +75,30 @@ An agent may reason that another capability is required. It may request addition
 
 This means that agents can influence the path of execution without owning the execution lifecycle itself.
 
+### Probabilistic context assessment without acquisition authority
+
+Context sufficiency is not always a deterministic question. An agent may express a need for additional information, but that expression is neither evidence that acquisition is necessary nor permission to acquire it.
+
+The **Context Need Assessment Service** evaluates the available task context probabilistically and produces assessment evidence about whether additional governed context may be needed and which context classes or capability needs could address the insufficiency.
+
+The assessment remains independent of physical stores and acquisition execution. It does not query canonical knowledge, operational systems, the enterprise graph, or external research sources, and it cannot authorize those operations.
+
+Its output is evidence for the platform, not an executable retrieval plan or a policy decision.
+
+The **Policy Decision Service** remains the deterministic authority for deciding whether a proposed acquisition is permitted under the effective identity, purpose, task, classification, and source constraints.
+
+The **Orchestration Service** coordinates the authorized acquisition through the appropriate bounded capability.
+
+The **Context Assembly Service** assembles permitted, task-scoped acquisition results into execution context while preserving provenance, classification, and applicable usage constraints. It neither acquires information nor grants permissions.
+
+> **Assessment estimates. Policy authorizes. Orchestration executes.**
+
+An assessment of insufficient context does not automatically trigger retrieval or external research.
+
+Research is a separate trust-boundary crossing and requires its own explicit authorization.
+
+A valid platform decision may also be to proceed with existing context, request clarification, report insufficient information, or deny further acquisition.
+
 ### Why not a supervisor agent?
 
 The decision is not based on the assumption that supervisor agents are inherently unsuitable. It follows from the authority model of this particular architecture.
@@ -149,7 +173,7 @@ Applying this criterion results in three primary agent archetypes.
 
 The Domain Support Agent provides user-facing reasoning within a bounded business domain.
 
-It can interpret domain-specific questions, combine multiple approved knowledge and data capabilities, evaluate intermediate results, and decide which additional information is required before producing an answer.
+It can interpret domain-specific questions, combine multiple approved knowledge and data capabilities, evaluate intermediate results, and express which additional information it believes may be needed before producing an answer.
 
 The architecture does not require a separate hard-coded agent implementation for every department. Domain specialization can instead be expressed through **Domain Contracts** that define the capabilities, knowledge scopes, policies, and interaction boundaries available for a particular domain.
 
@@ -170,9 +194,13 @@ It may formulate intermediate analytical questions, request additional datasets,
 
 This autonomy does not imply unrestricted access to enterprise data.
 
-The agent expresses **what data it needs**. The Enterprise Data Access Service determines whether and how that data may be obtained under the identity, authorization, classification, and policy context of the request.
+The agent expresses **what information or capability it believes it needs** to continue its task. This expression is a request, not an authorization or proof that additional context must be acquired.
 
-> **The agent decides what it needs to know. The data access layer decides what it is allowed to know.**
+Where additional context is in question, the Context Need Assessment Service may evaluate context sufficiency and produce probabilistic assessment evidence. The Policy Decision Service retains deterministic authority over whether the proposed acquisition is permitted.
+
+If authorized, the Orchestration Service coordinates the appropriate governed acquisition capability. The Enterprise Data Access Service mediates purpose-scoped access to operational data through approved contracts and source-level constraints.
+
+> **The agent expresses a need. Assessment evaluates sufficiency. Policy authorizes acquisition. Governed capabilities provide permitted context.**
 
 The same boundary applies to persistence. Analyses, reports, findings, and evidence can be created by the agent, while platform services remain responsible for durable storage and provenance.
 
@@ -183,8 +211,6 @@ The Research Agent exists because external research and enterprise retrieval rep
 Retrieval searches knowledge that has already entered the governed enterprise knowledge lifecycle. Research deliberately crosses that boundary to investigate information that is not yet part of trusted enterprise knowledge.
 
 A Research Agent can therefore explore approved external sources, compare evidence, resolve uncertainty, and produce structured findings. Those findings do not become canonical knowledge merely because the agent considers them reliable.
-
-They enter the knowledge lifecycle as evidence for curation and potential promotion.
 
 > **Research may extend what the system knows. It may never redefine what the enterprise considers true by itself.**
 
@@ -508,17 +534,58 @@ Treating both as interchangeable forms of “search” would hide an important a
 
 > **Retrieval searches what the enterprise already knows. Research investigates what it does not yet know.**
 
+### Governed context acquisition is broader than retrieval
+
+A context need is not necessarily a knowledge gap. A task may require additional canonical knowledge, governed relationship context, operational data, or explicitly authorized external evidence.
+
+These are different acquisition classes with different source authorities, constraints, and trust boundaries.
+
+The **Context Need Assessment Service** may produce probabilistic evidence that the current task context is insufficient and identify relevant context classes or capability needs.
+
+This evidence does not select physical stores, authorize acquisition, or execute any acquisition capability. An agent may likewise express a need without granting itself access.
+
+The **Policy Decision Service** determines whether a proposed acquisition is permitted for the current identity, task, purpose, classification, and source constraints.
+
+The **Orchestration Service** coordinates only authorized acquisition.
+
+The **Context Assembly Service** assembles the permitted, task-scoped results while preserving provenance, classification, and usage constraints. It is not an acquisition authority.
+
+The architecture distinguishes four acquisition classes:
+
+- **Knowledge Retrieval** — locates eligible canonical enterprise knowledge using governed semantic retrieval and resolves hits against authoritative artifacts.
+- **Graph Query** — provides authorized relationship context from the governed Enterprise Knowledge Graph without treating graph relationships as permission grants.
+- **Enterprise Data Access** — mediates purpose-scoped operational data access through approved interfaces and data contracts.
+- **External Research** — obtains evidence from approved external sources only under explicit task-scoped authorization, crossing a separate trust boundary.
+
+### Acquisition minimization
+
+Acquisition is minimized before context assembly.
+
+Source scope, query contracts, filters, projection, aggregation, and result bounds should prevent unnecessary information from entering the execution context.
+
+This **acquisition minimization** is distinct from the later **disclosure minimization** that controls which representation a model runtime may receive.
+
+> **Assessment estimates. Policy authorizes. Orchestration executes. Acquisition capabilities return bounded evidence or data.**
+
+Neither a low assessment score nor an empty retrieval result automatically triggers another acquisition class or external research.
+
+A valid outcome is to proceed with existing context, ask for clarification, report insufficiency, or deny further acquisition.
+
 ### Governed retrieval
 
-The Retrieval Service accesses approved enterprise knowledge through controlled representations such as the Semantic Index, Canonical Knowledge Store, and Enterprise Knowledge Graph.
+The **Knowledge Retrieval Service** locates eligible canonical enterprise knowledge through policy-governed, task-scoped semantic retrieval.
+
+The Semantic Index acts as a locator. Relevant hits are resolved against authoritative canonical artifacts, including their provenance, version, lifecycle status, classification, and validity.
+
+Relationship-oriented context is obtained separately through the **Graph Query Service**, which executes authorized, task-scoped queries against the governed Enterprise Knowledge Graph.
 
 A semantic search result is therefore not returned to an agent as an authoritative statement merely because it has a high similarity score.
 
-The Semantic Index acts as a locator. Relevant hits are resolved back to governed artifacts, where provenance, version, lifecycle status, classification, and validity can be evaluated.
+This preserves the separation between acquisition authority and knowledge authority:
 
-This preserves the authority chain:
+**Policy-Authorized Retrieval Task → Orchestration Service → Knowledge Retrieval Service → Semantic Index → Canonical Artifact**
 
-**Agent → Retrieval Service → Semantic Index → Canonical Artifact**
+The Semantic Index locates potentially relevant knowledge. The Knowledge Retrieval Service resolves eligible results against authoritative canonical artifacts. Neither semantic similarity nor retrieval execution grants acquisition authority.
 
 The retrieved content remains reference data.
 
@@ -536,9 +603,17 @@ No relevant knowledge may exist. Existing knowledge may be incomplete, contradic
 
 The architecture treats this condition as a **knowledge gap**, rather than silently allowing an agent to improvise or automatically search the internet.
 
-A knowledge gap can therefore trigger an explicit decision:
+A knowledge gap is evidence about governed knowledge coverage. It is neither an authorization nor an instruction to initiate research.
 
-**Knowledge Gap → Research Eligibility Policy**
+The platform evaluates whether additional governed context acquisition is necessary and permitted for the task.
+
+External research is considered only when explicitly proposed and authorized for the task. It may also be authorized directly for research-oriented tasks without a preceding retrieval failure.
+
+Conceptually:
+
+**Knowledge Gap → Assessment Evidence / Task Decision → Policy Authorization → Optional Governed Acquisition**
+
+This is a possible decision path, not a mandatory sequence. Context assessment does not have to precede every authorized acquisition, and a knowledge gap does not require further acquisition.
 
 If research is not permitted, the system should remain transparent about the limitation.
 
@@ -553,7 +628,9 @@ The ability to say “I do not know based on governed knowledge” is an archite
 
 ### Research crosses a trust boundary
 
-If policy permits external research, the request can be delegated to the Research Agent.
+When external research is explicitly authorized for the task, the Orchestration Service may delegate that bounded research task to the Research Agent.
+
+Authorization is required regardless of whether a knowledge gap was previously observed.
 
 External sources are not treated as trusted enterprise knowledge simply because they are publicly accessible or because a model considers them credible.
 
@@ -570,7 +647,7 @@ Its output is therefore a **Finding / Evidence Package**, not a canonical knowle
 
 The boundary is explicit:
 
-**Knowledge Gap → Research Agent → Finding / Evidence → Knowledge Curation**
+**Authorized Research Task → Research Agent → Finding / Evidence → Optional Knowledge Curation**
 
 Research ends when sufficiently supported findings have been produced. Knowledge governance begins when those findings enter curation.
 
@@ -619,17 +696,17 @@ The exact schema can vary by domain, but the principle remains the same:
 
 ### External research sources are governed capabilities
 
-The Research Agent does not receive unrestricted access to arbitrary external systems.
+Within an explicitly authorized research task, the Research Agent may select among permitted research capabilities.
+
+The platform determines which capabilities are available and what task-scoped request context may be disclosed to them.
 
 Approved research sources, search capabilities, APIs, or external tools remain subject to enterprise policy, data-disclosure rules, network restrictions, contractual constraints, and audit requirements.
 
 This means that “external research” is not synonymous with unrestricted web browsing.
 
-The Research Agent decides which permitted research capability may help resolve the knowledge gap. The platform determines which capabilities are available and what request context may be disclosed to them.
-
 This follows the same boundary already established for operational data:
 
-> **The agent decides what capability it needs. The platform decides what that capability is allowed to receive and do.**
+> **The agent proposes a capability. The platform authorizes its use and governs what it may receive and do.**
 
 ### Retrieval and research remain separate even when technology overlaps
 
@@ -643,13 +720,13 @@ The difference is defined by authority and trust:
 
 | Aspect | Retrieval | Research |
 |---|---|---|
-| Information domain | Governed enterprise knowledge | External or not-yet-governed information |
-| Primary purpose | Locate existing trusted knowledge | Investigate a knowledge gap |
+| Information domain | Governed enterprise knowledge | Approved external information sources |
+| Primary purpose | Locate existing governed knowledge | Investigate an explicitly authorized external research question |
 | Trust boundary | Inside enterprise knowledge boundary | Crosses external trust boundary |
 | Typical output | Governed knowledge artifacts | Findings and evidence |
 | Direct canonical write | No | No |
-| Curation required for reuse | Already governed | Yes |
-| Failure behavior | No trusted result | Research eligibility decision |
+| Curation required for canonical enterprise reuse | Already governed | Yes — before promotion to Canonical Knowledge |
+| Failure behavior | No eligible governed result; report insufficiency or request a separately authorized next step | No permitted source or insufficient evidence; report limitations |
 
 The architecture therefore models Retrieval and Research as separate capabilities even when parts of their technical implementation might eventually share infrastructure.
 
@@ -698,13 +775,27 @@ This classification does not by itself determine the runtime.
 
 Instead, it establishes the disclosure constraints that must be satisfied before the payload can leave its current trust boundary.
 
-### Transformation is part of the trust path
+### Disclosure transformation policy precedes transformation
 
 Sensitive source data does not automatically require local execution.
 
 In many real enterprise scenarios, a task may benefit from a capability that is only available, or significantly stronger, in a private, sovereign, or approved external runtime.
 
 The architecture therefore includes a deliberate disclosure-transformation step before runtime eligibility is evaluated.
+
+The **Disclosure Transformation Policy Service** determines the minimum viable representation permitted for the authorized processing purpose.
+
+It evaluates source classification, disclosure constraints, intended processing class, capability requirements, task utility, and applicable governance restrictions.
+
+The policy may authorize a particular representation and the required transformation methods, or deny disclosure entirely.
+
+This decision is separate from both performing a transformation and validating its result.
+
+The **Data Transformation Service** applies only the policy-selected transformation or approved combination of transformations.
+
+It does not independently decide what may be disclosed, and a technically successful transformation never constitutes disclosure permission.
+
+> **Disclosure is a policy decision about the minimum viable representation of information for an authorized processing purpose.**
 
 Depending on the task and policy, the payload can be transformed through techniques such as:
 
@@ -730,7 +821,17 @@ This creates a deliberate tension between **data minimization** and **task utili
 
 Transformation is not considered sufficient merely because a masking or pseudonymization step was executed.
 
-The transformed representation must be validated before it becomes eligible for downstream model execution.
+The transformed representation must be independently validated against the policy-approved disclosure constraints before it can be considered for downstream model execution.
+
+The **Transformation Validation Service** assesses residual disclosure and re-identification risk and produces validation evidence.
+
+It cannot relax the approved disclosure representation, grant additional permissions, or override a policy denial.
+
+A failed or inconclusive validation blocks the affected disclosure path.
+
+The platform must not silently substitute a less restrictive transformation or runtime to bypass that failure.
+
+> **Transformation changes representation. Validation assesses the result. Neither grants disclosure authority.**
 
 The **Transformation Validation Service** can evaluate properties such as:
 
@@ -757,7 +858,15 @@ The exact schema is implementation-specific. The architectural requirement is th
 
 ### Runtime eligibility is an intersection
 
-After transformation validation, the Model Execution Policy Service determines which runtimes are eligible for the current execution.
+After successful transformation validation, the **Model Execution Policy Service** determines which runtimes are eligible for the current execution.
+
+Its decision is constrained by the approved disclosure representation, validation evidence, capability qualification, enterprise governance, and operational eligibility.
+
+A runtime is eligible only when all applicable constraints are satisfied.
+
+If no compliant runtime remains, execution is denied for that path.
+
+The platform must not silently fall back to a less restrictive runtime, weaken disclosure constraints, or disclose the original source payload.
 
 Eligibility is not produced by ranking all available models and selecting the best one.
 
@@ -871,14 +980,12 @@ This creates the following trust path:
 
 **Execution Request  
 → Data & Context Classification  
-→ Capability / Runtime Need  
-→ Disclosure Transformation Policy  
-→ Data Transformation  
-→ Transformation Validation  
-→ Residual Disclosure Risk  
-→ Eligible Runtime Set  
-→ Capability Qualification  
-→ Runtime Selection**
+→ Authorized Purpose / Capability and Processing-Class Requirements  
+→ Disclosure Transformation Policy (approve representation or deny)  
+→ Data Transformation (policy-selected methods)  
+→ Independent Transformation Validation (residual risk)  
+→ Model Execution Policy (eligible runtime intersection or deny)  
+→ Runtime Selection and Execution**
 
 The exact implementation order may evaluate some constraints in parallel, but the architectural dependency remains the same:
 
@@ -938,9 +1045,19 @@ Enterprise agents often need access to operational data, but providing useful da
 
 The architecture deliberately separates **analytical intent from physical data access**.
 
-An agent can determine what information it needs to continue reasoning. The Enterprise Data Access Service is responsible for translating that requirement into an approved interaction with the underlying enterprise data landscape.
+An agent may express what operational information it believes is needed to continue reasoning.
 
-> **The agent decides what it needs to know. The data access layer decides what it is allowed to know.**
+That expression is a request, not a determination that acquisition is necessary or permitted.
+
+Where context sufficiency is uncertain, the **Context Need Assessment Service** may provide probabilistic assessment evidence.
+
+The **Policy Decision Service** authorizes or denies the proposed acquisition under the effective identity, task, purpose, classification, and source constraints.
+
+The **Orchestration Service** coordinates authorized acquisition, while the **Enterprise Data Access Service** enforces approved query contracts and source-level constraints.
+
+The **Context Assembly Service** incorporates only permitted results into task context.
+
+> **The agent expresses a need. Assessment informs. Policy authorizes. Data access enforces source constraints.**
 
 ### Existing enterprise systems remain authoritative
 
@@ -1058,7 +1175,9 @@ Relevant controls can include:
 - task context,
 - and applicable policy decisions.
 
-The service evaluates the requested data operation under that context and returns only the representation that the request is permitted to receive.
+The Policy Decision Service determines whether the proposed acquisition is authorized under the effective request context.
+
+The Enterprise Data Access Service enforces that authorization together with approved query contracts, source-system entitlements, and source-level constraints. It returns only the data permitted within the authorized acquisition scope.
 
 Agent delegation does not widen the result set.
 
@@ -1076,11 +1195,19 @@ Where possible, filtering, aggregation, projection, or purpose-specific query co
 
 This creates two complementary controls:
 
-**Data Access minimization** limits what enters the execution context.
+**Acquisition minimization** limits what is obtained from operational sources and subsequently enters the task context, using source-scoped filters, projections, aggregation, bounded results, and approved query contracts.
 
-**Disclosure transformation** limits what may leave a particular trust boundary for model processing.
+**Disclosure minimization** limits the representation that may be provided to a model runtime for an authorized processing purpose.
 
-They solve related but different problems.
+The **Disclosure Transformation Policy Service** determines the permitted representation.
+
+The **Data Transformation Service** applies the selected methods.
+
+The independent **Transformation Validation Service** assesses the result before the **Model Execution Policy Service** determines runtime eligibility.
+
+These controls operate at different trust boundaries.
+
+Permission to acquire operational data does not imply permission to disclose the same representation to a model runtime.
 
 > **Do not retrieve what the task does not need. Do not disclose what the runtime does not need.**
 
@@ -1119,7 +1246,13 @@ Conceptually:
 
 **Read path**
 
-**Agent → Enterprise Data Access Service → Approved Data Interface → Operational System**
+**Agent Request  
+→ Policy Authorization  
+→ Orchestration  
+→ Enterprise Data Access Service  
+→ Approved Data Interface  
+→ Operational System  
+→ Context Assembly**
 
 **Write / side-effect path**
 
@@ -1160,14 +1293,19 @@ Audit is required wherever a significant governed decision or state transition o
 Representative audit events include:
 
 - orchestration and routing decisions,
-- policy decisions,
+- context-need assessment references and outcomes,
+- governed context acquisition authorization decisions,
+- acquisition capability selection and execution outcomes,
+- policy decisions and denials,
 - approval outcomes,
 - workflow execution,
 - knowledge curation decisions,
 - candidate promotion or rejection,
 - semantic-index maintenance,
 - graph lifecycle changes,
-- transformation validation,
+- disclosure transformation policy decisions,
+- transformation execution and validation outcomes,
+- residual disclosure-risk assessment references,
 - runtime eligibility decisions,
 - and references to resulting artifacts or evidence.
 
@@ -1192,6 +1330,30 @@ Depending on the event type, useful audit metadata can include:
 This supports traceability across a distributed execution without turning every internal model token or reasoning step into an enterprise record.
 
 > **Governed decisions should be attributable without making hidden model reasoning part of the control plane.**
+
+### Assessment evidence is not authorization evidence
+
+Probabilistic assessments and deterministic governance decisions have different evidentiary roles.
+
+The **Context Need Assessment Service** may produce assessment evidence about context sufficiency, uncertainty, and potentially relevant acquisition classes.
+
+This evidence can inform subsequent platform decisions, but it does not authorize acquisition.
+
+Audit records must therefore distinguish between:
+
+- probabilistic assessment evidence,
+- deterministic policy authorization or denial,
+- orchestration decisions and execution outcomes,
+- acquisition capability results,
+- disclosure transformation policy decisions,
+- transformation validation evidence,
+- and model execution eligibility decisions.
+
+Where an assessment contributes to a governed decision, the platform should preserve an attributable reference to the relevant assessment result and its versioned configuration.
+
+A probabilistic assessment must not be recorded or interpreted as if it were an authoritative policy decision.
+
+> **Assessment provides evidence. Policy establishes authority. Audit preserves the distinction.**
 
 ### Observability follows execution
 
@@ -1247,6 +1409,32 @@ A trace can record that the Retrieval Service returned five governed artifacts w
 A model-execution span can record runtime class, latency, token usage, capability, transformation reference, and outcome without automatically persisting the complete execution payload.
 
 Where payload-level diagnostics are genuinely required, they should cross an explicit policy, classification, retention, and access-control boundary rather than being enabled as a default debugging convenience.
+
+### Assessment and transformation evidence remain data-minimized
+
+Context-need assessments, acquisition requests, transformation operations, and disclosure-risk validation can themselves involve sensitive task context or information about protected enterprise data.
+
+Auditability does not require indiscriminate persistence of the underlying business payloads, prompts, assessment inputs, transformed representations, or model execution content.
+
+By default, audit and observability should preserve attributable metadata and references rather than complete payloads.
+
+Depending on the governed operation, relevant evidence may include:
+
+- assessment outcome, uncertainty indicators, and assessment configuration reference,
+- authorization decision identifier and policy version,
+- acquisition capability, source class, and approved scope,
+- query-contract or source-interface reference,
+- disclosure transformation policy decision and permitted representation class,
+- transformation method and validation status,
+- residual-risk category or validation reference,
+- eligible runtime class and execution decision,
+- and task, request, artifact, or evidence correlation identifiers.
+
+The exact evidence retained must remain proportionate to the applicable accountability, security, privacy, and retention requirements.
+
+Where detailed payload-level evidence is necessary, its persistence requires explicit authorization and an appropriate retention and access-control policy.
+
+> **Audit the governed decision without automatically retaining the governed data.**
 
 ### Correlation provides end-to-end traceability
 
@@ -1324,7 +1512,7 @@ Their storage, retention, access controls, and integrity requirements should fol
 
 ### Technology remains implementation-specific
 
-The architecture deliberately does not prescribe a complete observability stack in v1.
+The architecture deliberately does not prescribe a complete observability stack as part of the current reference architecture.
 
 A concrete enterprise implementation could use technologies and standards such as:
 
@@ -1341,7 +1529,7 @@ The important requirement is that telemetry can cross component boundaries using
 
 ### Future evolution: Telemetry & Observability Plane
 
-Version 1 establishes the **Audit Service**, the **Observability Service**, representative telemetry relationships, and the architectural boundary between operational telemetry and governed business state.
+The current architecture establishes the **Audit Service**, the **Observability Service**, representative telemetry relationships, and the architectural boundary between operational telemetry and governed business state.
 
 It deliberately does not yet prescribe a complete **Telemetry & Observability Plane**.
 
@@ -1360,9 +1548,9 @@ A future refinement can expand this area to cover topics such as:
 
 This is an extension of an existing architectural boundary rather than a missing governance responsibility.
 
-The current views therefore remain valid without introducing an additional v1 architecture view.
+The current views therefore remain valid without introducing an additional architecture view dedicated to telemetry and observability.
 
-> **Version 1 defines where observability belongs. A later refinement can define how deeply it is implemented.**
+> **The architecture defines where observability belongs. Further refinement can define how deeply it is implemented.**
 
 ## 10. Evaluation and controlled evolution
 
@@ -1384,10 +1572,13 @@ Evaluation can operate at several levels:
 
 - model and runtime capability,
 - agent task performance,
-- retrieval quality,
+- context-need assessment quality and calibration,
+- governed context acquisition effectiveness and minimization,
+- retrieval and graph-query quality,
 - groundedness and evidence quality,
 - analytical correctness,
-- transformation utility,
+- disclosure transformation effectiveness and task utility,
+- transformation validation reliability,
 - workflow outcome quality,
 - and regression behavior across system changes.
 
@@ -1402,6 +1593,64 @@ A Research Agent may require evidence diversity, source quality, uncertainty han
 Model-runtime qualification may instead focus on whether a particular runtime reliably satisfies a defined capability contract.
 
 Evaluation is therefore attached to **capabilities and expected behavior**, not merely to model names.
+
+### Probabilistic context assessment requires calibration
+
+The Context Need Assessment Service produces probabilistic evidence about context sufficiency and potentially relevant acquisition needs.
+
+Its quality cannot be evaluated solely by whether an additional acquisition was subsequently performed.
+
+An authorized acquisition may be unnecessary, while a denied acquisition may still have been correctly identified as potentially useful.
+
+Evaluation must therefore distinguish assessment quality from policy authorization and orchestration outcomes.
+
+Representative evaluation dimensions include:
+
+- calibration of estimated context insufficiency,
+- false-positive and false-negative assessment behavior,
+- accuracy of suggested context classes,
+- sensitivity to task complexity and available evidence,
+- unnecessary acquisition recommendations,
+- missed information needs,
+- and robustness across domains and task types.
+
+Evaluation scenarios should include tasks where sufficient context already exists, tasks requiring additional governed context, and tasks where further acquisition is unavailable or prohibited.
+
+Assessment thresholds and configurations should be versioned, evaluated, and changed through controlled governance.
+
+> **Assessment quality is measured against evidence and outcomes, not inferred from whether policy permitted acquisition.**
+
+### Acquisition and disclosure controls require distinct evaluation
+
+Governed context acquisition and model disclosure transformation operate at different trust boundaries and must be evaluated separately.
+
+Acquisition evaluation examines whether the platform obtained appropriate, authorized, task-relevant context without unnecessary source access.
+
+Representative dimensions include:
+
+- relevance and sufficiency of acquired context,
+- correct acquisition-class selection,
+- adherence to source and query-contract constraints,
+- unnecessary or excessive acquisition,
+- provenance and classification preservation,
+- and behavior when acquisition is denied or produces insufficient results.
+
+Disclosure evaluation examines whether the policy-approved representation satisfies disclosure constraints while preserving sufficient utility for the authorized processing purpose.
+
+Representative dimensions include:
+
+- compliance with the approved disclosure representation,
+- effectiveness of required transformation methods,
+- residual disclosure and re-identification risk,
+- independence and reliability of transformation validation,
+- preservation of task-relevant information,
+- and correct denial when no compliant runtime remains.
+
+Evaluation results may inform changes to assessment configurations, acquisition contracts, transformation methods, validation criteria, or capability qualification.
+
+They do not independently authorize broader acquisition, weaker disclosure constraints, or expanded runtime eligibility.
+
+> **Evaluate what was acquired, what was disclosed, and whether each boundary remained effective.**
 
 ### Capability qualification is versioned
 
@@ -1606,13 +1855,36 @@ The chosen architecture therefore contains relatively few agent archetypes and m
 
 > **More agents do not automatically create more useful agency.**
 
+### Letting agents or context assessment authorize acquisition
+
+An agent can identify missing information, and a probabilistic Context Need Assessment can estimate whether additional context would help.
+
+Neither is a sufficient basis for granting access to enterprise knowledge, graph relationships, operational data, or external sources.
+
+The architecture deliberately rejects a shortcut in which an agent's request or an assessment score directly triggers acquisition without a separate policy decision.
+
+The chosen alternative keeps context-need evidence, deterministic authorization, and acquisition execution separate. The Policy Decision Service authorizes the proposed task-scoped acquisition; Orchestration coordinates its execution through the appropriate governed capability.
+
+**Benefit:**
+- probabilistic assessment cannot silently become access authority,
+- acquisition remains purpose-scoped and auditable,
+- and unnecessary or prohibited acquisition can be declined without treating the assessment itself as incorrect.
+
+**Trade-off:**
+- an additional decision boundary can increase latency and coordination,
+- and some useful context may remain unavailable when policy denies acquisition.
+
+> **Assessment estimates need. Policy grants permission. Orchestration executes only what is authorized.**
+
 ### Direct agent access to enterprise databases
 
 Direct SQL or database access can make an analytical agent extremely flexible.
 
 It also couples the agent to physical schemas, source-specific semantics, credentials, authorization behavior, query cost, and operational risk.
 
-The architecture therefore places enterprise data access behind a governed Data Access Service and favors approved semantic models, data products, query contracts, views, APIs, and constrained query mechanisms.
+The Policy Decision Service determines whether the proposed acquisition is authorized under the effective request context.
+
+The Enterprise Data Access Service enforces that authorization together with approved query contracts, source-system entitlements, and source-level constraints. It returns only the data permitted within the authorized acquisition scope.
 
 **Benefit:**
 - stronger authorization boundaries,
@@ -1714,6 +1986,27 @@ The architecture therefore evaluates trust and capability independently before o
 - and the globally strongest model may deliberately not be selected.
 
 > **The best model is the best eligible model for the task, not the strongest model in the catalog.**
+
+### Treating transformation or validation as disclosure permission
+
+A simpler execution path could transform sensitive data, check that the transformation succeeded, and then assume the result is safe to send to whichever model can complete the task.
+
+The architecture deliberately rejects this shortcut.
+
+The Disclosure Transformation Policy Service first determines the minimum viable representation permitted for the authorized purpose and intended processing class. The Data Transformation Service applies the approved methods. The independent Transformation Validation Service assesses the resulting representation and residual disclosure risk without granting new permission or overriding a denial.
+
+Only then does the Model Execution Policy Service determine the intersection of disclosure permission, capability qualification, governance, and operational eligibility. No eligible runtime is a valid denial outcome, not a reason to weaken the constraints.
+
+**Benefit:**
+- disclosure permission remains a policy decision rather than a technical side effect,
+- transformation defects and residual risks are assessed independently,
+- and runtime selection cannot bypass disclosure restrictions.
+
+**Trade-off:**
+- more explicit checks are required before execution,
+- and an otherwise useful model may remain ineligible even after transformation.
+
+> **Transformation changes data. Validation evaluates risk. Neither authorizes disclosure.**
 
 ### Persisting transformed payloads by default
 
@@ -1847,24 +2140,29 @@ This reference architecture describes a governed foundation for enterprise multi
 
 It is intentionally more explicit than a minimal agent implementation, but it is not intended to model every concern required for a production deployment.
 
-Version 1 focuses on the boundaries that should remain stable even as implementations, models, infrastructure, and individual use cases evolve.
+The reference model establishes boundaries that should remain stable even as governed context acquisition, model disclosure controls, implementations, infrastructure, and individual use cases evolve.
 
 These include:
 
 - deterministic ownership of orchestration and task state,
 - bounded agent autonomy,
 - explicit authority and capability boundaries,
-- governed access to enterprise data,
+- probabilistic context-need assessment without acquisition authority,
+- deterministic authorization and orchestration of task-scoped context acquisition,
+- governed access to canonical knowledge, graph context, operational enterprise data, and explicitly authorized external evidence,
+- acquisition minimization and provenance-preserving context assembly,
 - separation of canonical, candidate, derived, and operational state,
 - controlled knowledge acquisition and promotion,
 - explicit approval boundaries for side effects,
-- policy-controlled disclosure and model execution,
+- policy-controlled disclosure representation and transformation,
+- independent transformation validation without authorization authority,
+- model execution eligibility based on disclosure, capability, governance, and operational constraints,
 - independent capability qualification,
 - and separation of audit, observability, evaluation, and governed change.
 
 These are the architectural invariants of the reference model.
 
-### What version 1 deliberately does not prescribe
+### What the reference architecture deliberately does not prescribe
 
 The architecture intentionally stops before several implementation-specific concerns.
 
@@ -1898,7 +2196,11 @@ The diagrams describe architectural responsibilities, not a mandatory list of in
 
 Several responsibilities may share a deployment unit in a smaller implementation while remaining logically separate.
 
-For example, classification, transformation policy, and model execution policy might initially be implemented within one governance service. Canonical and Candidate Knowledge might reside in separate schemas of the same PostgreSQL cluster. Artifact metadata and durable task state might share infrastructure.
+For example, classification, disclosure transformation policy, and model execution policy might initially be implemented within one governance service, while retaining distinct decision responsibilities.
+
+The Data Transformation Service and independent Transformation Validation Service may also share deployment infrastructure without collapsing their logical responsibilities.
+
+Canonical and Candidate Knowledge might reside in separate schemas of the same PostgreSQL cluster. Artifact metadata and durable task state might share infrastructure.
 
 The logical boundaries should survive such consolidation.
 
@@ -1915,19 +2217,22 @@ The architecture can therefore support different maturity stages.
 An early implementation may begin with:
 
 - one or two high-value domain capabilities,
-- a limited set of governed data interfaces,
+- a limited set of governed acquisition capabilities and data interfaces,
+- a basic context-need assessment capability where uncertainty warrants it,
 - a small canonical knowledge domain,
 - a single semantic index,
 - one local and one approved external runtime,
-- basic policy enforcement,
+- explicit policy authorization for acquisition and disclosure,
 - and explicit audit of the most significant governed decisions.
 
 A more mature implementation can progressively introduce:
 
 - additional Domain Contracts,
-- broader operational data access,
+- broader governed context acquisition across knowledge, graph, operational data, and external evidence,
+- calibrated context-need assessment across domains,
 - richer knowledge-graph relationships,
 - automated curation support,
+- more sophisticated disclosure transformation and independent validation,
 - more sophisticated runtime qualification,
 - sovereign or specialized runtimes,
 - expanded evaluation,
@@ -1974,7 +2279,7 @@ Those are architectural decisions rather than product selections.
 
 ### Future evolution should preserve invariants
 
-Future versions of this architecture can deepen individual areas without abandoning the principles established in version 1.
+Future versions of this architecture can deepen individual areas without abandoning the established authority, trust, state, acquisition, and disclosure boundaries.
 
 Potential areas of evolution include:
 
@@ -2001,7 +2306,7 @@ The same test therefore continues to apply:
 
 ### A reference architecture, not a finished platform
 
-The six architecture views and the rationale in this repository describe a coherent architectural model.
+The architecture views and the rationale in this repository describe a coherent architectural model.
 
 They are not a claim that the resulting platform can be implemented as a single fixed product or delivered through one universal implementation plan.
 
